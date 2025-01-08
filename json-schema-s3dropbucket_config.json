@@ -156,7 +156,7 @@
     "PrefixFocus": {
       "type": "string",
       "default": "",
-      "description": "Prefix Focus - Focus on processing only inbound S3DropBucket Objects with the prefix xxx (typically a Customer prefix). Provided as an aid, See documentation for discussions on managing Customer S3 Buckets and SQS Queues of the S3DropBucket Solution."
+      "description": "Prefix Focus - Focus on processing only the inbound S3DropBucket Objects with the prefix xxx (typically a Customer prefix, minimum 3 characters). Provided as an aid, See documentation for discussions on managing Customer S3 Buckets and SQS Queues of the S3DropBucket Solution."
     },
     "EventEmitterMaxListeners": {
       "type": "number",
