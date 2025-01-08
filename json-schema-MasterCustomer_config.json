@@ -53,7 +53,7 @@
       "default": 1000,
       "minimum": 10
     },
-    "listType": {
+    "updateType": {
       "type": "string",
       "minLength": 7,
       "maxLength": 14,
@@ -67,6 +67,10 @@
         "UpdateContacts",
         "CreateAttributes"
       ]
+    },
+    "updateContactsKey": {
+      "type": "string",
+      "minLength": 0
     },
     "listId": {
       "type": "string",
