@@ -53,7 +53,7 @@
       "default": 1000,
       "minimum": 10
     },
-    "updateType": {
+    "listType": {
       "type": "string",
       "minLength": 7,
       "maxLength": 14,
