@@ -87,6 +87,12 @@
       "default": "s3dropbucket-configs",
       "description": "S3 Bucket for Config Files for this deployment of the Lambda function",
       "minLength": 3
+    },    
+    "S3DropBucketFirehoseStream": {
+      "type": "string",
+      "default": "S3DropBucket_Aggregator",
+      "description": "Firehose Stream (Aggregator) for this deployment of the S3DropBucket solution",
+      "minLength": 3
     },
     "S3DropBucketWorkQueue": {
       "type": "string",
@@ -216,6 +222,7 @@
     "S3DropBucket",
     "S3DropBucketWorkBucket",
     "S3DropBucketConfigs",
+    "S3DropBucketFirehoseStream",
     "S3DropBucketWorkQueue",
     "S3DropBucketQuiesce",
     "WorkQueueQuiesce",
@@ -226,7 +233,7 @@
     "S3DropBucketWorkQueueMaintHours",
     "S3DropBucketWorkQueueMaintLimit",
     "S3DropBucketWorkQueueMaintConcurrency",
-    "prefixFocus",
+    "PrefixFocus",
     "EventEmitterMaxListeners",
     "jsonSeparator",
     "MaxBatchesWarning",
