@@ -234,7 +234,7 @@
     "separator",
     "updates",
     "targetupdate",
-    "updateMaxRows",
+    "updatemaxrows",
     "updateType",
     "transforms"
   ]
