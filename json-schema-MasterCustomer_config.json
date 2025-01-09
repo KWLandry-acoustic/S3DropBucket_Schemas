@@ -48,12 +48,12 @@
         "Multiple"
       ]
     },
-    "updateMaxRows": {
+    "updatemaxrows": {
       "type": "number",
       "default": 1000,
       "minimum": 10
     },
-    "listType": {
+    "updatetype": {
       "type": "string",
       "minLength": 7,
       "maxLength": 14,
@@ -68,15 +68,15 @@
         "CreateAttributes"
       ]
     },
-    "updateContactsKey": {
+    "updatecontactskey": {
       "type": "string",
       "minLength": 0
     },
-    "listId": {
+    "listid": {
       "type": "string",
       "minLength": 0
     },
-    "listName": {
+    "listname": {
       "type": "string",
       "minLength": 0
     },
@@ -99,23 +99,23 @@
         "ca"
       ]
     },
-    "clientId": {
+    "clientid": {
       "type": "string",
       "minLength": 0
     },
-    "clientSecret": {
+    "clientsecret": {
       "type": "string",
       "minLength": 0
     },
-    "refreshToken": {
+    "refreshtoken": {
       "type": "string",
       "minLength": 0
     },
-    "dataSetId": {
+    "datasetid": {
       "type": "string",
       "minLength": 0
     },
-    "subscriptionId": {
+    "subscriptionid": {
       "type": "string",
       "minLength": 0
     },
@@ -162,7 +162,7 @@
     "transforms": {
       "type": "object",
       "properties": {
-        "Methods": {
+        "methods": {
           "type": "object",
           "properties": {
             "daydate": {
@@ -178,7 +178,7 @@
             "daydate"
           ]
         },
-        "jsonMap": {
+        "jsonmap": {
           "type": "object",
           "properties": {
             "Col1": {
@@ -191,7 +191,7 @@
             }
           }
         },
-        "csvMap": {
+        "csvmap": {
           "type": "object",
           "properties": {
             "Col1": {
