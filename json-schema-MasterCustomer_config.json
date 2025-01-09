@@ -221,9 +221,9 @@
         }
       },
       "required": [
-        "Methods",
-        "jsonMap",
-        "csvMap",
+        "methods",
+        "jsonmap",
+        "csvmap",
         "ignore"
       ]
     }
