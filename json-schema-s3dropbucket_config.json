@@ -99,8 +99,14 @@
       "minLength": 3
     },
     "s3dropbucket_log": {
-      "type": "boolean",
-      "description": "Send all Logging data to the S3 Bucket defined by s3dropbucket_LogBucket"
+      "type": "string",
+      "description": "(Future) Send all Logging data to the S3 Bucket defined by s3dropbucket_LogBucket",
+      "default": "CloudWatch",
+      "enum": [
+        "S3",
+        "CloudWatch",
+        "Both"
+      ]
     },
     "s3dropbucket": {
       "type": "string",
