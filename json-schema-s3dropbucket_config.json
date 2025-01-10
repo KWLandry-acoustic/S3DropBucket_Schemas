@@ -7,7 +7,7 @@
     "xmlapiurl",
     "restapiurl",
     "authapiurl",
-    "s3dropbucket_",
+    "s3dropbucket",
     "s3dropbucket_logbucket",
     "s3dropbucket_log",
     "s3dropbucket_workbucket",
