@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "Primary Configuration for the s3dropbucket_ Solution",
+  "description": "Primary Configuration for the S3DropBucket Solution",
   "type": "object",
   "required": [
     "aws_region",
