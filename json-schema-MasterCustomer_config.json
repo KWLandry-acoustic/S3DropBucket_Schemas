@@ -3,6 +3,16 @@
   "title": "Master S3DropBucket Customer Config Schema",
   "description": "S3DropBucket Master Customer Config Schema",
   "type": "object",
+  "required": [
+    "Customer",
+    "format",
+    "separator",
+    "updates",
+    "targetupdate",
+    "updatemaxrows",
+    "updatetype",
+    "transforms"
+  ],
   "properties": {
     "Customer": {
       "type": "string",
@@ -161,6 +171,12 @@
 
     "transforms": {
       "type": "object",
+      "required": [
+        "methods",
+        "jsonmap",
+        "csvmap",
+        "ignore"
+      ],
       "properties": {
         "methods": {
           "type": "object",
@@ -219,23 +235,7 @@
             }
           }
         }
-      },
-      "required": [
-        "methods",
-        "jsonmap",
-        "csvmap",
-        "ignore"
-      ]
+      }
     }
-  },
-  "required": [
-    "Customer",
-    "format",
-    "separator",
-    "updates",
-    "targetupdate",
-    "updatemaxrows",
-    "updateType",
-    "transforms"
-  ]
+  }
 }
