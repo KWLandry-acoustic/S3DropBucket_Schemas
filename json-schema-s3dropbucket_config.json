@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "S3DropBucket Configuration Schema",
   "description": "Primary Configuration for the S3DropBucket Solution",
   "type": "object",
   "required": [

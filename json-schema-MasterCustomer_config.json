@@ -183,11 +183,11 @@
           "properties": {
             "daydate": {
               "type": "string",
-              "minLength": 1
+              "minLength": 0
             },
-            "altdata": {
+            "method2": {
               "type": "string",
-              "minLength": 1
+              "minLength": 0
             }
           },
           "required": [
