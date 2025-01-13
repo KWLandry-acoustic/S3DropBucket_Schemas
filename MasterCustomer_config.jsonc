@@ -1,0 +1,79 @@
+{
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json",
+
+
+      "Customer": "Customer_",
+
+      "format": "json",
+      "separator": "\n",
+
+      "updates": "Multiple", //Multiple, Singular
+
+      "targetupdate": "Connect",
+
+      "updatemaxrows": 1000,
+
+      "pod": "4",
+      "region": "us",
+
+      "updatetype": "CreateContacts", //DBKeyed, DBNonKeyed, Relational, ReferenceSet, CreateContacts, UpdateContacts, CreateAttributes
+      "updateContactsKey": "Email",
+
+      //"listId": "44294868",
+      //"listName": "Weather_Forecast_RT",
+      //"clientId": "01922b64-bac2-4b6f-bee6-3ffc8cb1aaf1",
+      //"clientSecret": "3b0dd1cc-47b5-4579-a283-e9f708f9028b",
+      //"refreshToken": "r8dQcorf50hNZlFPpA0qwr9wPUdQBwexr2wwv-nJKlGAS1",
+
+      "listId": "",
+      "listName": "",
+      "clientId": "",
+      "clientSecret": "",
+      "refreshToken": "",
+
+
+      "dataSetId": "df07969b-7126-47f2-812d-b7b5876627f7",
+      "subscriptionId": "bb6758fc16bbfffbe4248214486c06cc3a924edf",
+      "x_api_key": "41d0316c76e24cd6bf31d202a12a37c2_gka",
+      "x_acoustic_region": "us-east-1",
+
+      "transforms": {
+
+            "methods": {
+                  "daydate": "updatedAt"
+            },
+
+            "jsonmap": {
+                  "Email": "$.email",
+                  "PostalCode": "$.zipcode",
+                  "Group": "$.id",
+                  "Firstname": "$.first",
+                  "Lastname": "$.last",
+                  "Branding": "$.photo",
+                  "AE_Name": "$.jobTitle",
+                  "Access_Phone": "$.phone",
+                  "Employee": "$.registeredAdvisorTitle"
+            },
+
+            "csvmap": {
+                  //"Col_AA_SR": "description",
+                  //"Col_BB_SE": "conditions"
+            },
+
+            "ignore": [
+                  "email",
+                  "acousticPhoto",
+                  "registeredAdvisorTitle",
+                  "phone",
+                  "jobTitle",
+                  "photo",
+                  "last",
+                  "first",
+                  "id",
+                  "zipcode",
+                  "brandApprovedPhoto",
+                  "designations",
+                  "updatedAt"
+            ]
+      }
+}
