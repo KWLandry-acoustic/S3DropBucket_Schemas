@@ -21,9 +21,9 @@
 
       //"listId": "44294868",
       //"listName": "Weather_Forecast_RT",
-      //"clientId": "01922b64-bac2-4b6f-bee6-xxxxxxxxxxxx",
-      //"clientSecret": "3b0dd1cc-47b5-4579-a283-xxxxxxxxxxxx",
-      //"refreshToken": "r8dQcorf50hNZlFPpA0qwr9wPUdQBwexr2wwv-xxxxxxxxxxxx",
+      //"clientId": "xxxxxxx4-bac2-4b6f-bee6-xxxxxxxxxxxx",
+      //"clientSecret": "xxxxxx1cc-47b5-4579-a283-xxxxxxxxxxxx",
+      //"refreshToken": "xxxxxxf50hNZlFPpA0qwr9wPUdQBwexr2wwv-xxxxxxxxxxxx",
 
       "listId": "",
       "listName": "",
@@ -34,7 +34,7 @@
 
       "dataSetId": "df07969b-7126-47f2-812d-b7b5876627f7",
       "subscriptionId": "bb6758fc16bbfffbe4248214486c06cc3a924edf",
-      "x_api_key": "41d0316c76e24cd6bf31d202xxxxxxxxxxxx",
+      "x_api_key": "xxxxxxc76e24cd6bf31d202xxxxxxxxxxxx",
       "x_acoustic_region": "us-east-1",
 
       "transforms": {
