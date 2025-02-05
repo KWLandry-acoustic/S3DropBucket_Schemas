@@ -17,7 +17,7 @@
       "region": "us",
 
       "updatetype": "CreateContacts", //DBKeyed, DBNonKeyed, Relational, ReferenceSet, CreateContacts, UpdateContacts, CreateAttributes
-      "updateContactsKey": "Email",
+      "updatecontactskey": "Email",
 
       //"listId": "44294868",
       //"listName": "Weather_Forecast_RT",
@@ -30,7 +30,7 @@
       "clientId": "",
       "clientSecret": "",
       "refreshToken": "",
-
+      "lookupkeys": [],
 
       "dataSetId": "df07969b-7126-47f2-812d-b7b5876627f7",
       "subscriptionId": "bb6758fc16bbfffbe4248214486c06cc3a924edf",

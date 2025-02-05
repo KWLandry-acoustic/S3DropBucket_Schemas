@@ -16,11 +16,19 @@
   "properties": {
     "Customer": {
       "type": "string",
+      "description": "DataFlow Name - Best Practice 'CustomerName_DataflowName_'",
       "default": "MasterCustomer_",
       "minLength": 3
     },
+    "selectivelogging": {
+      "type": "string",
+      "description": "Override Selective Logging for this Customers DataFlow",
+      "default": "",
+      "minLength": 0
+    },
     "format": {
       "type": "string",
+      "description": "Inbound data is in the format of CSV or JSON data",
       "default": "json",
       "minLength": 3,
       "enum": [
@@ -30,6 +38,7 @@
     },
     "separator": {
       "type": "string",
+      "description": "Inbound data has this seperator (When different than the default for that type, JSON should the default of '\\n')",
       "default": "\n",
       "minLength": 1,
       "enum": [
@@ -40,6 +49,7 @@
     },
     "targetupdate": {
       "type": "string",
+      "description": "The data is to be written to Connect or Campaign",
       "minLength": 7,
       "maxLength": 8,
       "default": "Connect",
@@ -50,6 +60,7 @@
     },
     "updates": {
       "type": "string",
+      "description": "Inbound data is made up of small continuous updates, Singular or arrives in bulk, Multiple updates",
       "minLength": 8,
       "maxLength": 8,
       "default": "Multiple",
@@ -60,11 +71,13 @@
     },
     "updatemaxrows": {
       "type": "number",
+      "description": "Emit a Safety Warning when the rows of any single inbound update exceeds this value",
       "default": 1000,
       "minimum": 10
     },
     "updatetype": {
       "type": "string",
+      "description": "The dataflow update-type to be used for the Connect or Campaign Org. Update as Relational, DBKeyed, DBNonKeyed, ReferenceSet, CreateContacts, UpdateContacts",
       "minLength": 7,
       "maxLength": 14,
       "default": "Relational",
@@ -74,16 +87,24 @@
         "DBNonKeyed",
         "ReferenceSet",
         "CreateContacts",
-        "UpdateContacts",
-        "CreateAttributes"
+        "UpdateContacts"
       ]
+    },
+    "lookupkeys": {
+      "type": "array",
+      "description": "When updatetype is DBNonKeyed, what are the LookUp Keys to be used to update records (use a comma seperated list between the brackets) ",
+      "minLength": 0,
+      "maxLength": 50,
+      "default": "[]"
     },
     "updatecontactskey": {
       "type": "string",
+      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the attribute to be used as the key to update data by.",
       "minLength": 0
     },
     "listid": {
       "type": "string",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the target listid to be updated",
       "minLength": 0
     },
     "listname": {
@@ -92,14 +113,29 @@
     },
     "pod": {
       "type": "string",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic POD number for the Customer Org.",
       "optional": true,
       "minLength": 0,
       "maxLength": 1,
-      "enum": [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B" ]
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B"
+      ]
     },
     "region": {
       "type": "string",
-      "default": "us-east-1",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic Region for the Customers Org.",
+      "default": "us",
       "minLength": 0,
       "maxLength": 2,
       "enum": [
@@ -111,34 +147,41 @@
     },
     "clientid": {
       "type": "string",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic App Access ClientId for the Customers Org.",
       "minLength": 0
     },
     "clientsecret": {
       "type": "string",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic App Access ClientSecret for the Customers Org.",
       "minLength": 0
     },
     "refreshtoken": {
       "type": "string",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic App Access RefreshToken for the Customers Org.",
       "minLength": 0
     },
     "datasetid": {
       "type": "string",
+      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the target datasetid to be updated",
       "minLength": 0
     },
     "subscriptionid": {
       "type": "string",
+      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers SubscriptionId of their Connect Org",
       "minLength": 0
     },
     "x_api_key": {
       "type": "string",
+      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Connect API x_api_key of their Connect Org (currently its the same value for all Connect Orgs)",
       "minLength": 0
     },
     "x_acoustic_region": {
       "type": "string",
+      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers AWS Region Id of their Connect Org",
       "default": "us-east-1",
       "enum": [
         "us-east-1",
-        "us-east-2", 
+        "us-east-2",
         "us-west-1",
         "us-west-2",
         "af-south-1",
@@ -168,74 +211,97 @@
       ],
       "minLength": 0
     },
-
     "transforms": {
       "type": "object",
+      "description": "The transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include audience status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
+        "audience",
         "methods",
         "jsonmap",
         "csvmap",
         "ignore"
       ],
       "properties": {
-        "methods": {
-          "type": "object",
-          "properties": {
-            "daydate": {
-              "type": "string",
-              "minLength": 0
-            },
-            "method2": {
-              "type": "string",
-              "minLength": 0
-            }
-          },
-          "required": [
-            "daydate"
-          ]
-        },
-        "jsonmap": {
-          "type": "object",
-          "properties": {
-            "Col1": {
-              "type": "string",
-              "minLength": 1
-            },
-            "Col2": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "csvmap": {
-          "type": "object",
-          "properties": {
-            "Col1": {
-              "type": "string",
-              "minLength": 1
-            },
-            "Col2": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "ignore": {
+        "audience": {
           "type": "array",
-          "items": {
-            "properties": {
-              "Col1": {
-                "type": "string",
-                "minLength": 1
-              },
-              "Col2": {
-                "type": "string",
-                "minLength": 1
-              }
+          "description": "Optional, Audience(s) to be associated with this stream of data (dataflow), specify up to 50 Audiences. Where the first param is the Audience Name to be used and the second param the value to be recorded as the Audience Status. Preceding the second param with an '@' symbol indicates the value for Audience Status is to be taken from a Column in the data. Otherwise, the string entered in the second param is used as a static string for the Audience Status value.",
+          "minLength": 0,
+          "maxLength": 50,
+          "default": [
+            {
+              "Aud1": "@column"
+            },
+            {
+              "Aud2": "static value"
+            }
+          ]
+        }
+      },
+      "methods": {
+        "type": "object",
+        "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
+        "properties": {
+          "daydate": {
+            "type": "string",
+            "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not apply the transform.",
+            "minLength": 0
+          },
+          "method2": {
+            "type": "string",
+            "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not apply the transform.",
+            "minLength": 0
+          }
+        },
+        "required": [
+          "daydate"
+        ]
+      },
+      "jsonmap": {
+        "type": "object",
+        "description": "Optional. Write a New Column with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave value(s) empty to not apply the transform.",
+        "properties": {
+          "Col1": {
+            "type": "string",
+            "minLength": 1
+          },
+          "Col2": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "csvmap": {
+        "type": "object",
+        "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
+        "properties": {
+          "Col1": {
+            "type": "string",
+            "description": "Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1). Leave value(s) empty to not apply the transform. ",
+            "minLength": 1
+          },
+          "Col2": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "ignore": {
+        "type": "array",
+        "description": "Optional. Ignore a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
+        "items": {
+          "properties": {
+            "Col1": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Col2": {
+              "type": "string",
+              "minLength": 1
             }
           }
         }
       }
     }
   }
+}
 }

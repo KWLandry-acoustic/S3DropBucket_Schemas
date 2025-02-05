@@ -249,6 +249,11 @@
       "description": "Useful for cleaning up s3dropbucket_ after testing during onboarding Customers, s3dropbucket_Purge defines the bucket to purge inbound files at each invocation (Max 1000). However, this option is deprecated in favor of using AWS Commands (see s3dropbucket_ Operations and Maintenance Guide) ",
       "minLength": 3,
       "deprecate": true
+    },
+    "s3dropbucket_sftp": {
+      "type": "boolean",
+      "description": "Support SFTP in this Region (true) or not (false)",
+      "default": false 
     }
   }
 }

@@ -182,7 +182,7 @@
       //Selective Debug 919:  Log the Transforms configured and applied 
       //Selective Debug 920:  Log the final outcome of all s3dropbucket bucket processing 
       //Selective Debug 921:  Log the final outcome of all Work Process (Queue) Bucket processing
-      //Selective Debug 922:  Log detailed result of sending file data to Firehose Aggregator
+      //Selective Debug 922:  Log detailed result of sending *each* update to Firehose Aggregator (see 942 for summary reporting as this can be hundreds/thousands of updates reported)
       //Selective Debug 923:  Log any Quiesce in force
       //Selective Debug 924:  Log each Delete of a successful processing of a queued Work file
       //Selective Debug 925:  Log the Processing of an Aggregated file (Firehose Aggregated) from s3dropbucket
@@ -204,7 +204,7 @@
       //Selective Debug 939:  Log 
       //Selective Debug 940:  Log 
       //Selective Debug 941:  Log 
-      //Selective Debug 942:  Log result of sending file data to Firehose Aggregator (see 922 for detailed logging)
+      //Selective Debug 942:  Log result/summary of sending the updates from a file to Firehose Aggregator (see 922 for detailed logging of each update)
       //Selective Debug 943:  Log completion of file processing to FireHose Aggregator
       //Selective Debug 944:  Log 
       //Selective Debug 945:  Log 
