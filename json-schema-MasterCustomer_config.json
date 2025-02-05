@@ -235,8 +235,7 @@
               "Aud2": "static value"
             }
           ]
-        }
-      },
+        },
       "methods": {
         "type": "object",
         "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
