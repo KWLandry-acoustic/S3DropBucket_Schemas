@@ -230,21 +230,17 @@
           "properties": {
             "Aud1": {
               "type": "string",
-              "minLength": 1
+              "minLength": 0
             },
             "Aud2": {
               "type": "string",
-              "minLength": 1
+              "minLength": 0
             }
           },
-          "default": [
-            {
-              "Aud1": "@column"
-            },
-            {
-              "Aud2": "static value"
-            }
-          ]
+          "default": {
+            "Aud1": "@Column10",
+            "Aud2": "Active"
+          }
         },
         "methods": {
           "type": "object",
