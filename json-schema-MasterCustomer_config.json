@@ -223,10 +223,20 @@
       ],
       "properties": {
         "audience": {
-          "type": "array",
+          "type": "object",
           "description": "Optional, Audience(s) to be associated with this stream of data (dataflow), specify up to 50 Audiences. Where the first param is the Audience Name to be used and the second param the value to be recorded as the Audience Status. Preceding the second param with an '@' symbol indicates the value for Audience Status is to be taken from a Column in the data. Otherwise, the string entered in the second param is used as a static string for the Audience Status value.",
           "minLength": 0,
           "maxLength": 50,
+          "properties": {
+            "Aud1": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Aud2": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
           "default": [
             {
               "Aud1": "@column"
@@ -236,61 +246,46 @@
             }
           ]
         },
-      "methods": {
-        "type": "object",
-        "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
-        "properties": {
-          "daydate": {
-            "type": "string",
-            "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not apply the transform.",
-            "minLength": 0
+        "methods": {
+          "type": "object",
+          "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
+          "properties": {
+            "daydate": {
+              "type": "string",
+              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not apply the transform.",
+              "minLength": 0
+            },
+            "method2": {
+              "type": "string",
+              "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not apply the transform.",
+              "minLength": 0
+            }
           },
-          "method2": {
-            "type": "string",
-            "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not apply the transform.",
-            "minLength": 0
-          }
+          "required": [
+            "daydate"
+          ]
         },
-        "required": [
-          "daydate"
-        ]
-      },
-      "jsonmap": {
-        "type": "object",
-        "description": "Optional. Write a New Column with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave value(s) empty to not apply the transform.",
-        "properties": {
-          "Col1": {
-            "type": "string",
-            "minLength": 1
-          },
-          "Col2": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "csvmap": {
-        "type": "object",
-        "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
-        "properties": {
-          "Col1": {
-            "type": "string",
-            "description": "Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1). Leave value(s) empty to not apply the transform. ",
-            "minLength": 1
-          },
-          "Col2": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "ignore": {
-        "type": "array",
-        "description": "Optional. Ignore a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
-        "items": {
+        "jsonmap": {
+          "type": "object",
+          "description": "Optional. Write a New Column with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave value(s) empty to not apply the transform.",
           "properties": {
             "Col1": {
               "type": "string",
+              "minLength": 0
+            },
+            "Col2": {
+              "type": "string",
+              "minLength": 0
+            }
+          }
+        },
+        "csvmap": {
+          "type": "object",
+          "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
+          "properties": {
+            "Col1": {
+              "type": "string",
+              "description": "Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1). Leave value(s) empty to not apply the transform. ",
               "minLength": 1
             },
             "Col2": {
@@ -298,9 +293,24 @@
               "minLength": 1
             }
           }
+        },
+        "ignore": {
+          "type": "array",
+          "description": "Optional. Ignore a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
+          "items": {
+            "properties": {
+              "Col1": {
+                "type": "string",
+                "minLength": 1
+              },
+              "Col2": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
         }
       }
     }
   }
-}
 }

@@ -26,7 +26,10 @@
       "x_api_key": "xxxxxxc76e24cd6bf31d202xxxxxxxxxxxx",
       "x_acoustic_region": "us-east-1",
       "transforms": {
-            "audience": "",
+            "audience": {
+                  "Cart Abandon": "@column10",
+                  "Audience2": "Entered"
+            },
             "methods": {
                   "daydate": "updatedAt"
             },
