@@ -17,7 +17,7 @@
     "Customer": {
       "type": "string",
       "description": "DataFlow Name - Best Practice 'CustomerName_DataflowName_'",
-      "default": "MasterCustomer_",
+      "default": "CustomerDataFlow1_",
       "minLength": 3
     },
     "selectivelogging": {
@@ -100,16 +100,19 @@
     "updatecontactskey": {
       "type": "string",
       "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the attribute to be used as the key to update data by.",
-      "minLength": 0
+      "minLength": 0,
+      "default": "email"
     },
     "listid": {
       "type": "string",
       "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the target listid to be updated",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "listname": {
       "type": "string",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "pod": {
       "type": "string",
@@ -130,7 +133,8 @@
         "9",
         "A",
         "B"
-      ]
+      ],
+      "default": "0"
     },
     "region": {
       "type": "string",
@@ -148,32 +152,38 @@
     "clientid": {
       "type": "string",
       "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic App Access ClientId for the Customers Org.",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "clientsecret": {
       "type": "string",
       "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic App Access ClientSecret for the Customers Org.",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "refreshtoken": {
       "type": "string",
       "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic App Access RefreshToken for the Customers Org.",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "datasetid": {
       "type": "string",
       "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the target datasetid to be updated",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "subscriptionid": {
       "type": "string",
       "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers SubscriptionId of their Connect Org",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "x_api_key": {
       "type": "string",
       "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Connect API x_api_key of their Connect Org (currently its the same value for all Connect Orgs)",
-      "minLength": 0
+      "minLength": 0,
+      "default": ""
     },
     "x_acoustic_region": {
       "type": "string",
@@ -259,7 +269,10 @@
           },
           "required": [
             "daydate"
-          ]
+          ],
+          "default": {
+            "daydate": ""
+          }
         },
         "jsonmap": {
           "type": "object",
@@ -273,6 +286,10 @@
               "type": "string",
               "minLength": 0
             }
+          },
+          "default": {
+            "Col1": "",
+            "Col2": ""
           }
         },
         "csvmap": {
@@ -288,6 +305,10 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          "default": {
+            "Col1": "",
+            "Col2": ""
           }
         },
         "ignore": {
@@ -304,7 +325,13 @@
                 "minLength": 1
               }
             }
-          }
+          },
+          "default": [
+            {
+              "Col1": "",
+              "Col2": ""
+            }
+          ]
         }
       }
     }
