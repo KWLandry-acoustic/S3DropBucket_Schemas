@@ -4,6 +4,7 @@
   "description": "S3DropBucket Master Customer Config Schema",
   "type": "object",
   "required": [
+    "selectivelogging",
     "Customer",
     "format",
     "separator",
@@ -226,30 +227,51 @@
       "description": "The transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include audience status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
         "audience",
+        "consent",
         "methods",
         "jsonmap",
         "csvmap",
         "ignore"
       ],
       "properties": {
-        "audience": {
+        "consent": {
           "type": "object",
-          "description": "Optional, Audience(s) to be associated with this stream of data (dataflow), specify up to 50 Audiences. Where the first param is the Audience Name to be used and the second param the value to be recorded as the Audience Status. Preceding the second param with an '@' symbol indicates the value for Audience Status is to be taken from a Column in the data. Otherwise, the string entered in the second param is used as a static string for the Audience Status value.",
+          "description": "Optional, Consent(s) to be associated with this stream of data (dataflow) (see also JSONMap and CSVMap), specify up to 50 Audiences, where the first param is the Audience Name and the second param the value to be recorded as the Audience Status.",
           "minLength": 0,
           "maxLength": 50,
           "properties": {
-            "Aud1": {
+            "Channel1": {
               "type": "string",
-              "minLength": 0
+              "minLength": 3
             },
-            "Aud2": {
+            "Channel2": {
               "type": "string",
-              "minLength": 0
+              "minLength": 3
             }
           },
           "default": {
-            "Aud1": "@Column10",
-            "Aud2": "Active"
+            "Email": "ConsentColumn1",
+            "SMS": "ConsentColumn2"
+          }
+        },
+        "audience": {
+          "type": "object",
+          "description": "Optional, Audience(s) to be associated with this stream of data (dataflow), specify up to 50 Consents, where the first param is the Consent Channel Name and the second param the value to be recorded as the Audience Status.",
+          "minLength": 0,
+          "maxLength": 50,
+          "properties": {
+            "AudienceXYZ": {
+              "type": "string",
+              "minLength": 3
+            },
+            "AudienceABC": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "default": {
+            "AudienceXYZ": "AudienceColumn1",
+            "AudienceABC": "AudienceColumn2"
           }
         },
         "methods": {
@@ -292,6 +314,64 @@
             "Col2": ""
           }
         },
+        "reservedjson": {
+          "type": "object",
+          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
+          "properties": {
+            "Col1": {
+              "type": "string",
+              "minLength": 0
+            },
+            "Col2": {
+              "type": "string",
+              "minLength": 0
+            }
+          },
+          "default": {
+            "Col1": "",
+            "Col2": ""
+          }
+        },
+        "reservedcsv": {
+          "type": "object",
+          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
+          "properties": {
+            
+            "audienceupdate": {
+              "type": "array",
+              "description": "Provide Audience update from JSONPath mapped Value in data file",
+              "minLength": 0
+            },
+            "channelconsent": {
+              "type": "array",
+              "description": "Provide Channel Consent update from JSONPath mapped Value in data file",
+              "minLength": 0
+            },
+            "contactkey": {
+              "type": "string",
+              "description": "Provide ContactKey update from JSONPth mapped Value",
+              "minLength": 0
+            },
+            "contactid": {
+              "type": "string",
+              "description": "Provide ContactId update from JSONPath mapped Value",
+              "minLength": 0
+            }
+          },
+          "default": {
+            "audience": [
+              {"AudienceX1": "$.audienceColumn1"},
+              {"AudienceX2": "$.audienceColumn2"}
+            ],
+            "channel": [
+              {"EMAIL": "$.audienceColumn1"},
+              {"SMS":   "$.audienceColumn2"}
+            ],
+            "contactkey": "",
+            "contactid": ""
+          }
+        },
+
         "csvmap": {
           "type": "object",
           "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",

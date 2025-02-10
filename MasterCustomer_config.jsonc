@@ -21,15 +21,24 @@
       "clientSecret": "",
       "refreshToken": "",
       "lookupkeys": [],
+
       "dataSetId": "df07969b-7126-47f2-812d-b7b5876627f7",
       "subscriptionId": "bb6758fc16bbfffbe4248214486c06cc3a924edf",
       "x_api_key": "xxxxxxc76e24cd6bf31d202xxxxxxxxxxxx",
       "x_acoustic_region": "us-east-1",
+      
       "transforms": {
-            "audience": {
-                  "Cart Abandon": "@column10",
-                  "Audience2": "Entered"
+
+            "audienceupdate": {                //Use When Audience is not in the Data, provides Static Values for Audience data, use JSONMap/CSVMap when Audience is in data
+                  "AcmeBuy": "Entered",
+                  "AcmeSold": "Active",
+                  "AcmeViewed": "Exited"
             },
+            "channelconsent": {                 //Use When Consent is not in the Data, provides Static values for Conent data, use JSONMap/CSVMap when Consent is in data
+                  "EMAIL":  "OPT_IN_UNVERIFIED", 
+                  "SMS":    "OPT_IN"
+            },
+
             "methods": {
                   "daydate": "updatedAt"
             },
@@ -44,10 +53,24 @@
                   "Access_Phone": "$.phone",
                   "Employee": "$.registeredAdvisorTitle"
             },
+            "reservedJSON": {           //Reference to data in datafile to be used for Update/Create Statement parameters but not used as update data.   
+                  "Audience": [{"AudienceX1": "$.audience"}],           //Create Audience update from JSONPath mapped Value in data file
+                  "Channel":  [{"EmailChannel": "$.consent"}],          //Create a Channel Consent update from JSONPath mapped Value in data file
+                  "ContactKey": "$.email",                              //Create ContactKey update from JSONPth mapped Value
+                  "ContactId": "$.id"                                   //Create ContactId update from JSONPath mapped Value
+            },                          
+      
             "csvmap": {
                   //"Col_AA_SR": "description",
                   //"Col_BB_SE": "conditions"
             },
+            "reservedCSV": {          //Reference to datafile data to be used for Update/Create Statement parameters but not used as update data. 
+                  // "Audience": [{"AudienceX1": "audienceColumn1"}],            //Create Audience update from CSV mapped Column in CSV data file
+                  // "Channel":  [{"EmailChannel": "consentColumn2"}],           //Create a Channel Consent update from CSV mapped Column in CSV data file
+                  // "ContactKey": "emailColumn",                                //Create ContactKey Update from CSV mapped Column in CSV data file 
+                  // "ContactId": "uniqueIdColumn"                               //Create ContactId Update from CSV mapped Column in CSV data file
+            },
+
             "ignore": [
                   "email",
                   "acousticPhoto",
