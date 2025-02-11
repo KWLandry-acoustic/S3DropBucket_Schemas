@@ -226,7 +226,7 @@
       "type": "object",
       "description": "Transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include Audience status, Consent status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
-       "audienceupdate",
+        "audienceupdate",
         "channelconsent",
         "reservedjson",
         "reservedcsv",
@@ -312,13 +312,19 @@
             }
           },
           "default": {
-            "Col1": "",
-            "Col2": ""
+            "NewCol1": "$.JsonProperty1",
+            "NewCol2": "$.JSONProp2"
           }
         },
         "reservedjson": {
           "type": "object",
-          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",          
+          "required":[
+            "Audience",
+            "Channel",
+            "ContactKey",
+            "ContactId"
+          ],
+          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
           "properties": {
             "Audience": {
               "type": "array",
@@ -339,12 +345,20 @@
           },
           "default": {
             "Audience": [
-              {"AudienceX1": "$.audience"},
-              {"AudienceABC2": "$.audienceABC2value"}
+              {
+                "AudienceX1": "$.audience"
+              },
+              {
+                "AudienceABC2": "$.audienceABC2value"
+              }
             ],
             "Channel": [
-              {"EmailChannel": "$.emailconsentvalue"},
-              {"Channel2": "$.channel2consentvalue"}
+              {
+                "EmailChannel": "$.emailconsentvalue"
+              },
+              {
+                "Channel2": "$.channel2consentvalue"
+              }
             ],
             "ContactKey": "$.contactKeyvalue",
             "ContactId": "$.uniqueId"
@@ -352,9 +366,14 @@
         },
         "reservedcsv": {
           "type": "object",
+          "required":[
+            "audienceupdate",
+            "channelconsent",
+            "contactkey",
+            "contactid"
+          ],
           "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
           "properties": {
-            
             "audienceupdate": {
               "type": "array",
               "description": "Provide Audience update from JSONPath mapped Value in data file",
@@ -378,18 +397,25 @@
           },
           "default": {
             "audienceupdate": [
-              {"AudienceX1": "$.audienceColumn1"},
-              {"AudienceX2": "$.audienceColumn2"}
+              {
+                "AudienceX1": "$.audienceColumn1"
+              },
+              {
+                "AudienceX2": "$.audienceColumn2"
+              }
             ],
             "channelconsent": [
-              {"EMAIL": "$.audienceColumn1"},
-              {"SMS":   "$.audienceColumn2"}
+              {
+                "EMAIL": "$.audienceColumn1"
+              },
+              {
+                "SMS": "$.audienceColumn2"
+              }
             ],
             "contactkey": "",
             "contactid": ""
           }
         },
-
         "csvmap": {
           "type": "object",
           "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
@@ -405,8 +431,8 @@
             }
           },
           "default": {
-            "Col1": "",
-            "Col2": ""
+            "NewCol1": "ExistingColumn1",
+            "NewCol2": "ExistingColumn2"
           }
         },
         "ignore": {
