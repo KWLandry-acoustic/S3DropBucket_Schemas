@@ -228,6 +228,8 @@
       "required": [
         "audienceupdate",
         "channelconsent",
+        "contactid",
+        "ContactKey",
         "reservedjson",
         "reservedcsv",
         "methods",
@@ -238,7 +240,7 @@
       "properties": {
         "channelconsent": {
           "type": "object",
-          "description": "Optional, Consent(s) and static statuses to be associated with this stream of data (dataflow) (see also JSONMap and CSVMap), where the first param is the Channel Consent Name and the second param is the static value to be recorded as the Channel Consent Status (See reservedjson and reservedcsv for dynamic Channel Consent status from the data).",
+          "description": "Optional, Consent(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status (OPT_IN, OPT_OUT, OPT_IN_UNVERIFIED)\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
           "maxLength": 20,
           "enum": [
@@ -247,7 +249,7 @@
             "WhatsApp"
           ],
           "properties": {
-            "Channel1": {
+            "Email": {
               "type": "string",
               "enum": [
                 "OPT_IN",
@@ -256,7 +258,16 @@
               ],
               "minLength": 0
             },
-            "Channel2": {
+            "SMS": {
+              "type": "string",
+              "enum": [
+                "OPT_IN",
+                "OPT_OUT",
+                "OPT_IN_UNVERIFIED"
+              ],
+              "minLength": 0
+            },
+            "WhatsApp": {
               "type": "string",
               "enum": [
                 "OPT_IN",
@@ -268,12 +279,15 @@
           },
           "default": {
             "Email": "OPT_IN_UNVERIFIED",
-            "SMS": "OPT_IN"
+            "SMS": "OPT_IN",
+            "WhatsApp": "OPT_OUT",
+            "Email2": "$.json_emailchannelconsentvalue",
+            "Email3": "@.csvfile_emailchannelconsentvalue"
           }
         },
         "audienceupdate": {
           "type": "object",
-          "description": "Optional, Audience(s) and static statuses to be associated with this stream of data (dataflow) where the first param is the Audience Name and the second param is the static value to be referenced as the Audience Status (See reservedjson and reservedcsv for dynamic Audience status from the data).",
+          "description": "Optional, Audience(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Audience Name and the second param is the value to be recorded as the Audience Status\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
           "maxLength": 50,
           "properties": {
@@ -288,88 +302,26 @@
           },
           "default": {
             "AudienceXYZ": "AudienceColumn1",
-            "AudienceABC": "AudienceColumn2"
+            "AudienceABC": "$.json_AudienceValue",
+            "AudienceDEF": "@.csvfile_AudienceColumn"
           }
         },
-        "reservedjson": {
-          "type": "object",
-          "required":[
-            "Audience",
-            "Channel",
-            "ContactKey",
-            "ContactId"
-          ],
-          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
-          "properties": {
-            "Audience": {
-              "type": "array",
-              "minLength": 0
-            },
-            "Channel": {
-              "type": "array",
-              "minLength": 0
-            },
-            "ContactKey": {
-              "type": "string",
-              "minLength": 0
-            },
-            "ContactId": {
-              "type": "string",
-              "minLength": 0
-            }
-          },
+        "ContactKey": {
+          "type": "string",
+          "minLength": 0,
+          "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
           "default": {
-            "Audience": [
-              {
-                "AudienceX1": "$.audience"
-              },
-              {
-                "AudienceABC2": "$.audienceABC2value"
-              }
-            ],
-            "Channel": [
-              {
-                "EmailChannel": "$.emailconsentvalue"
-              },
-              {
-                "Channel2": "$.channel2consentvalue"
-              }
-            ],
-            "ContactKey": "$.contactKeyvalue",
-            "ContactId": "$.uniqueId"
+            "ContactKey": "123456789"
           }
         },
-        "reservedcsv": {
-          "type": "object",
-          "required":[
-            "audienceupdate",
-            "channelconsent",
-            "contactkey",
-            "contactid"
-          ],
-          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
-          "properties": {
-            "audienceupdate": {
-              "type": "array",
-              "description": "Provide Audience update from JSONPath mapped Value in data file",
-              "minLength": 0
-            },
-            "channelconsent": {
-              "type": "array",
-              "description": "Provide Channel Consent update from JSONPath mapped Value in data file",
-              "minLength": 0
-            },
-            "contactkey": {
-              "type": "string",
-              "description": "Provide ContactKey update from JSONPth mapped Value",
-              "minLength": 0
-            },
-            "contactid": {
-              "type": "string",
-              "description": "Provide ContactId update from JSONPath mapped Value",
-              "minLength": 0
-            }
-          },
+        "ContactId": {
+          "type": "string",
+          "minLength": 0,
+          "description": "Examples: \nContactId: 123456789,        // specify a static value \nContactId: $.jsonpathValue,  // When a JSON datafile, specify a value using JSONPath statement \nContactId: @.csvfileColumn   // When a CSV datafile specify a value from a Column in the data",
+          "default": {
+            "ContactId": "123456789"
+          }
+        },
         "methods": {
           "type": "object",
           "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
@@ -410,70 +362,69 @@
             "NewCol2": "$.JSONProp2"
           }
         },
-       
-          "default": {
-            "audienceupdate": [
-              {
-                "AudienceX1": "$.audienceColumn1"
-              },
-              {
-                "AudienceX2": "$.audienceColumn2"
-              }
-            ],
-            "channelconsent": [
-              {
-                "EMAIL": "$.audienceColumn1"
-              },
-              {
-                "SMS": "$.audienceColumn2"
-              }
-            ],
-            "contactkey": "",
-            "contactid": ""
+        "default": {
+          "audienceupdate": [
+            {
+              "AudienceX1": "$.audienceColumn1"
+            },
+            {
+              "AudienceX2": "$.audienceColumn2"
+            }
+          ],
+          "channelconsent": [
+            {
+              "EMAIL": "$.audienceColumn1"
+            },
+            {
+              "SMS": "$.audienceColumn2"
+            }
+          ],
+          "contactkey": "",
+          "contactid": ""
+        }
+      },
+      "csvmap": {
+        "type": "object",
+        "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
+        "properties": {
+          "Col1": {
+            "type": "string",
+            "description": "Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1). Leave value(s) empty to not apply the transform. ",
+            "minLength": 1
+          },
+          "Col2": {
+            "type": "string",
+            "minLength": 1
           }
         },
-        "csvmap": {
-          "type": "object",
-          "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
+        "default": {
+          "NewCol1": "ExistingColumn1",
+          "NewCol2": "ExistingColumn2"
+        }
+      },
+      "ignore": {
+        "type": "array",
+        "description": "Optional. Ignore a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
+        "items": {
           "properties": {
             "Col1": {
               "type": "string",
-              "description": "Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1). Leave value(s) empty to not apply the transform. ",
               "minLength": 1
             },
             "Col2": {
               "type": "string",
               "minLength": 1
             }
-          },
-          "default": {
-            "NewCol1": "ExistingColumn1",
-            "NewCol2": "ExistingColumn2"
           }
         },
-        "ignore": {
-          "type": "array",
-          "description": "Optional. Ignore a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
-          "items": {
-            "properties": {
-              "Col1": {
-                "type": "string",
-                "minLength": 1
-              },
-              "Col2": {
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          },
-          "default": [
-            {
-              "Col1": "",
-              "Col2": ""
-            }
-          ]
-        }
+        "default": [
+          {
+            "Col1": "",
+            "Col2": ""
+          }
+        ]
       }
     }
   }
+}
 }
