@@ -224,7 +224,7 @@
     },
     "transforms": {
       "type": "object",
-      "description": "The transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include audience status, unique methods, jsonmapping, csvmapping, and ignore columns",
+      "description": "Transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include Audience status, Consent status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
         "audienceupdate",
         "channelconsent",
@@ -318,20 +318,36 @@
         },
         "reservedjson": {
           "type": "object",
-          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",
+          "description": "Optional. Provides a Reference to data in the datafile to be used for Update/Create Statement parameters but ignored as update data.",          
           "properties": {
-            "Col1": {
+            "Audience": {
+              "type": "array",
+              "minLength": 0
+            },
+            "Channel": {
+              "type": "array",
+              "minLength": 0
+            },
+            "ContactKey": {
               "type": "string",
               "minLength": 0
             },
-            "Col2": {
+            "ContactId": {
               "type": "string",
               "minLength": 0
             }
           },
           "default": {
-            "Col1": "",
-            "Col2": ""
+            "Audience": [
+              {"AudienceX1": "$.audience"},
+              {"AudienceABC2": "$.audienceABC2value"}
+            ],
+            "Channel": [
+              {"EmailChannel": "$.emailconsentvalue"},
+              {"Channel2": "$.channel2consentvalue"}
+            ],
+            "ContactKey": "$.contactKeyvalue",
+            "ContactId": "$.uniqueId"
           }
         },
         "reservedcsv": {
@@ -365,7 +381,7 @@
               {"AudienceX1": "$.audienceColumn1"},
               {"AudienceX2": "$.audienceColumn2"}
             ],
-            "channel": [
+            "channelconsent": [
               {"EMAIL": "$.audienceColumn1"},
               {"SMS":   "$.audienceColumn2"}
             ],
