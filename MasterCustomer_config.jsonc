@@ -1,6 +1,6 @@
 {
       "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json",
-      
+      "selectivelogging": "",
       "Customer": "Customer_",
       "format": "json",
       "separator": "\n",
@@ -27,7 +27,7 @@
       "subscriptionId": "bb6758fc16bbfffbe4248214486c06cc3a924edf",
       "x_api_key": "xxxxxxc76e24cd6bf31d202xxxxxxxxxxxx",
       "x_acoustic_region": "us-east-1",
-
+      
       "transforms": {
             "audienceupdate": {                //Use When Audience is not in the Data, provides Static Values for Audience data, use JSONMap/CSVMap when Audience is in data
                   "AcmeBuy": "Entered",

@@ -228,8 +228,8 @@
       "required": [
        "audienceupdate",
         "channelconsent",
-        "reservedJSON",
-        "reservedCSV",
+        "reservedjson",
+        "reservedcsv",
         "methods",
         "jsonmap",
         "csvmap",
@@ -238,9 +238,9 @@
       "properties": {
         "channelconsent": {
           "type": "object",
-          "description": "Optional, Consent(s) to be associated with this stream of data (dataflow) (see also JSONMap and CSVMap), specify up to 50 Audiences, where the first param is the Audience Name and the second param the value to be recorded as the Audience Status.",
+          "description": "Optional, Consent(s) to be associated with this stream of data (dataflow) (see also JSONMap and CSVMap), where the first param is the Audience Name and the second param the value to be recorded as the Audience Status.",
           "minLength": 0,
-          "maxLength": 50,
+          "maxLength": 20,
           "properties": {
             "Channel1": {
               "type": "string",
@@ -258,7 +258,7 @@
         },
         "audienceupdate": {
           "type": "object",
-          "description": "Optional, Audience(s) to be associated with this stream of data (dataflow), specify up to 50 Consents, where the first param is the Consent Channel Name and the second param the value to be recorded as the Audience Status.",
+          "description": "Optional, Audience(s) to be associated with this stream of data (dataflow) where the first param is the Audience Name and the second param the value to be referenced as the Audience Status.",
           "minLength": 0,
           "maxLength": 50,
           "properties": {
