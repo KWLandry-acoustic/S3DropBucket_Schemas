@@ -361,7 +361,7 @@
             }
           },
           "default": {
-            "audience": [
+            "audienceupdate": [
               {"AudienceX1": "$.audienceColumn1"},
               {"AudienceX2": "$.audienceColumn2"}
             ],
