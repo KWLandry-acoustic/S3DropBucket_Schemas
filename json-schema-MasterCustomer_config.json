@@ -238,6 +238,51 @@
         "ignore"
       ],
       "properties": {
+        "ContactKey": {
+          "type": "string",
+          "minLength": 0,
+          "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
+          "default": {
+            "ContactKey": "123456789"
+          }
+        },
+        "ContactId": {
+          "type": "string",
+          "minLength": 0,
+          "description": "Examples: \nContactId: 123456789,        // specify a static value \nContactId: $.jsonpathValue,  // When a JSON datafile, specify a value using JSONPath statement \nContactId: @.csvfileColumn   // When a CSV datafile specify a value from a Column in the data",
+          "default": {
+            "ContactId": "123456789"
+          }
+        },
+        "addressablefields":{
+          "type": "object",
+          "description": "Optional, Addressable Fields to use as the key to update a Contact. Where the first param is the Addressable Field Name and the second param is the value to be recorded as the Addressable Field Value\nExamples:\nEmail: abcemail@domain.com          # Static value\nReferenceId: $.jsonpathValue    # JSONPath for JSON files\nUniqueId: @.csvfileColumn      # Column name for CSV files",
+          "minLength": 0,
+          "maxLength": 5,
+          "properties": {
+            "field1": {
+              "type": "string",
+              "minLength": 0,
+              "default": {
+                "Email": "$.emailAddress"
+              }
+            },
+            "field2": {
+              "type": "string",
+              "minLength": 0,
+              "default": {
+                "UniqueId": "@.uniqueIdColumn"
+              }
+            },
+            "field3": {
+              "type": "string",
+              "minLength": 0,
+              "default": {
+                "field3": "StaticValue123456789"
+              }
+            }
+          }
+        },
         "channelconsent": {
           "type": "object",
           "description": "Optional, Consent(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status (OPT_IN, OPT_OUT, OPT_IN_UNVERIFIED)\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
@@ -306,22 +351,7 @@
             "AudienceDEF": "@.csvfile_AudienceColumn"
           }
         },
-        "ContactKey": {
-          "type": "string",
-          "minLength": 0,
-          "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
-          "default": {
-            "ContactKey": "123456789"
-          }
-        },
-        "ContactId": {
-          "type": "string",
-          "minLength": 0,
-          "description": "Examples: \nContactId: 123456789,        // specify a static value \nContactId: $.jsonpathValue,  // When a JSON datafile, specify a value using JSONPath statement \nContactId: @.csvfileColumn   // When a CSV datafile specify a value from a Column in the data",
-          "default": {
-            "ContactId": "123456789"
-          }
-        },
+
         "methods": {
           "type": "object",
           "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
