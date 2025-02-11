@@ -222,7 +222,7 @@
       ],
       "minLength": 0
     },
-    "transformers": {
+    "transforms": {
       "type": "object",
       "description": "Transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include Audience status, Consent status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
