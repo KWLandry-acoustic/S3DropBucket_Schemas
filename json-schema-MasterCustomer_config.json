@@ -291,46 +291,6 @@
             "AudienceABC": "AudienceColumn2"
           }
         },
-        "methods": {
-          "type": "object",
-          "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
-          "properties": {
-            "daydate": {
-              "type": "string",
-              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not apply the transform.",
-              "minLength": 0
-            },
-            "method2": {
-              "type": "string",
-              "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not apply the transform.",
-              "minLength": 0
-            }
-          },
-          "required": [
-            "daydate"
-          ],
-          "default": {
-            "daydate": ""
-          }
-        },
-        "jsonmap": {
-          "type": "object",
-          "description": "Optional. Write a New Column with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave value(s) empty to not apply the transform.",
-          "properties": {
-            "Col1": {
-              "type": "string",
-              "minLength": 0
-            },
-            "Col2": {
-              "type": "string",
-              "minLength": 0
-            }
-          },
-          "default": {
-            "NewCol1": "$.JsonProperty1",
-            "NewCol2": "$.JSONProp2"
-          }
-        },
         "reservedjson": {
           "type": "object",
           "required":[
@@ -410,6 +370,47 @@
               "minLength": 0
             }
           },
+        "methods": {
+          "type": "object",
+          "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
+          "properties": {
+            "daydate": {
+              "type": "string",
+              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not apply the transform.",
+              "minLength": 0
+            },
+            "method2": {
+              "type": "string",
+              "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not apply the transform.",
+              "minLength": 0
+            }
+          },
+          "required": [
+            "daydate"
+          ],
+          "default": {
+            "daydate": ""
+          }
+        },
+        "jsonmap": {
+          "type": "object",
+          "description": "Optional. Write a New Column with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave value(s) empty to not apply the transform.",
+          "properties": {
+            "Col1": {
+              "type": "string",
+              "minLength": 0
+            },
+            "Col2": {
+              "type": "string",
+              "minLength": 0
+            }
+          },
+          "default": {
+            "NewCol1": "$.JsonProperty1",
+            "NewCol2": "$.JSONProp2"
+          }
+        },
+       
           "default": {
             "audienceupdate": [
               {
