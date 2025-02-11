@@ -226,15 +226,15 @@
       "type": "object",
       "description": "The transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include audience status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
-        "audience",
-        "consent",
+        "audienceupdate",
+        "channelconsent",
         "methods",
         "jsonmap",
         "csvmap",
         "ignore"
       ],
       "properties": {
-        "consent": {
+        "channelconsent": {
           "type": "object",
           "description": "Optional, Consent(s) to be associated with this stream of data (dataflow) (see also JSONMap and CSVMap), specify up to 50 Audiences, where the first param is the Audience Name and the second param the value to be recorded as the Audience Status.",
           "minLength": 0,
