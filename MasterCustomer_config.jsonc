@@ -1,5 +1,5 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=3",
       "selectivelogging": "",
       "Customer": "Customer_",
       "format": "json",
@@ -29,10 +29,10 @@
       "x_acoustic_region": "us-east-1",
       
       "transforms": {
-            "ContactId": {
+            "contactid": {
                   "ContactId": "123456789"
             },
-            "ContactKey": {
+            "contactkey": {
                   "ContactKey": "123456789"
             },
             "addressablefields": {
@@ -46,7 +46,7 @@
                   "AcmeViewed": "Exited"
             },
             "channelconsent": {                 //Use When Consent is not in the Data, provides Static values for Conent data, use JSONMap/CSVMap when Consent is in data
-                  "EMAIL":  "OPT_IN_UNVERIFIED", 
+                  "Email":  "OPT_IN_UNVERIFIED", 
                   "SMS":    "OPT_IN"
             },
 

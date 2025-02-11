@@ -238,20 +238,20 @@
         "ignore"
       ],
       "properties": {
-        "ContactKey": {
+        "contactid": {
           "type": "string",
           "minLength": 0,
           "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
           "default": {
-            "ContactKey": "123456789"
+            "contactid": "123456789"
           }
         },
-        "ContactId": {
+        "contactkey": {
           "type": "string",
           "minLength": 0,
           "description": "Examples: \nContactId: 123456789,        // specify a static value \nContactId: $.jsonpathValue,  // When a JSON datafile, specify a value using JSONPath statement \nContactId: @.csvfileColumn   // When a CSV datafile specify a value from a Column in the data",
           "default": {
-            "ContactId": "123456789"
+            "contactkey": "123456789"
           }
         },
         "addressablefields":{
@@ -288,11 +288,6 @@
           "description": "Optional, Consent(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status (OPT_IN, OPT_OUT, OPT_IN_UNVERIFIED)\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
           "maxLength": 20,
-          "enum": [
-            "Email",
-            "SMS",
-            "WhatsApp"
-          ],
           "properties": {
             "Email": {
               "type": "string",
