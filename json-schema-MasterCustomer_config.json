@@ -226,12 +226,11 @@
       "type": "object",
       "description": "Transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include Audience status, Consent status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
+        "contactid",
+        "contactkey",
         "audienceupdate",
         "channelconsent",
-        "contactid",
-        "ContactKey",
-        "reservedjson",
-        "reservedcsv",
+        "addressablefields",
         "methods",
         "jsonmap",
         "csvmap",
@@ -241,7 +240,7 @@
         "contactid": {
           "type": "string",
           "minLength": 0,
-          "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
+          "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath foeserved JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
           "default": {
             "contactid": "123456789"
           }
