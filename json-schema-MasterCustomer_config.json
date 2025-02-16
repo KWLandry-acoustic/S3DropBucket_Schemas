@@ -98,12 +98,6 @@
       "maxLength": 50,
       "default": "[]"
     },
-    "updatecontactskey": {
-      "type": "string",
-      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the attribute to be used as the key to update data by.",
-      "minLength": 0,
-      "default": "email"
-    },
     "listid": {
       "type": "string",
       "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the target listid to be updated",
@@ -117,7 +111,7 @@
     },
     "pod": {
       "type": "string",
-      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic POD number for the Customer Org.",
+      "description": "When updatetype is Relational, DBKeyed, or DBNonKeyed what is the Acoustic POD number for the Customers Org.",
       "optional": true,
       "minLength": 0,
       "maxLength": 1,
@@ -188,7 +182,7 @@
     },
     "x_acoustic_region": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers AWS Region Id of their Connect Org",
+      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers Region Id of their Connect Org",
       "default": "us-east-1",
       "enum": [
         "us-east-1",
@@ -228,9 +222,9 @@
       "required": [
         "contactid",
         "contactkey",
+        "addressablefields",
         "audienceupdate",
         "channelconsent",
-        "addressablefields",
         "methods",
         "jsonmap",
         "csvmap",
@@ -290,29 +284,15 @@
           "properties": {
             "Email": {
               "type": "string",
-              "enum": [
-                "OPT_IN",
-                "OPT_OUT",
-                "OPT_IN_UNVERIFIED"
-              ],
+   
               "minLength": 0
             },
             "SMS": {
               "type": "string",
-              "enum": [
-                "OPT_IN",
-                "OPT_OUT",
-                "OPT_IN_UNVERIFIED"
-              ],
               "minLength": 0
             },
             "WhatsApp": {
               "type": "string",
-              "enum": [
-                "OPT_IN",
-                "OPT_OUT",
-                "OPT_IN_UNVERIFIED"
-              ],
               "minLength": 0
             }
           },
@@ -320,8 +300,8 @@
             "Email": "OPT_IN_UNVERIFIED",
             "SMS": "OPT_IN",
             "WhatsApp": "OPT_OUT",
-            "Email2": "$.json_emailchannelconsentvalue",
-            "Email3": "@.csvfile_emailchannelconsentvalue"
+            "Email2": "$.json_emailchannel2consentvalue",
+            "Email3": "@.csvfile_emailchannel3consentvalue"
           }
         },
         "audienceupdate": {
