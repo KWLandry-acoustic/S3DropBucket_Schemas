@@ -28,32 +28,58 @@
       "x_api_key": "xxxxxxc76e24cd6bf31d202xxxxxxxxxxxx",
       "x_acoustic_region": "us-east-1",
       
+      
       "transforms": {
-            "contactid": {
-                  "ContactId": "123456789"
+            "contactid": "9993456789", //"$.jsonfileValue"  "@.csvfileColumn"
+            "contactkey": "123456789", //"$.jsonfileValue"  "@.csvfileColumn"
+            "addressablefields": { //only 3 allowed 
+                  "field1": "Email",
+                  "field2": "PostalCode",
+                  "field3": "Group",
+                  "field4": "$.jsonfileValue", //example
+                  "field5": "@.csvfileColumn" //example
             },
-            "contactkey": {
-                  "ContactKey": "123456789"
+            "consent": { 
+                  "Email": "OPT_IN_UNVERIFIED",       //Static Values: Use When Consent status is not in the Data (use JSONMap/CSVMap when Consent is in data)
+                  "SMS": "OPT_OUT",
+                  "WhatsApp": "$.whatsappconsent",
+                  "Email2": "@.csvfileColumn",
+                  // "NewsletterWeekly": "3a7134b8-dcb5-509a-b7ff-946b48333cc9",
+                  // "CustomAcmePromo": "80c6d728-556c-5c21-b931-35332e41b853"
+                  "statement": {
+                        "consentGroups": [
+                              { "consentGroupId": "97660d76-02d8-5fd6-xxxx-000000000000", "status": "OPT_IN" },
+                              { "consentGroupId": "97660d76-02d8-5fd6-xxxx-000000000000",
+                                    "channels": { "channel": "EMAIL", "status": "OPT_IN_UNVERIFIED"}
+                              }
+                        ]
+                  }
             },
-            "addressablefields": {
-                  "Email": "123456789",
-                  "PostalCode": "123456789",
-                  "Group": "123456789"
-            },
-            "audienceupdate": {                //Use When Audience is not in the Data, provides Static Values for Audience data, use JSONMap/CSVMap when Audience is in data
-                  "AcmeBuy": "Entered",
-                  "AcmeSold": "Active",
-                  "AcmeViewed": "Exited"
-            },
-            "channelconsent": {                 //Use When Consent is not in the Data, provides Static values for Conent data, use JSONMap/CSVMap when Consent is in data
-                  "Email":  "OPT_IN_UNVERIFIED", 
-                  "SMS":    "OPT_IN"
+            "audienceupdate": { //Static Values: Use When Audience status is not in the Data (use JSONMap/CSVMap when Consent is in data)
+                  "AudienceXYZ": "Exited",
+                  "AudienceABC": "Entered",
+                  "AudiencePQR": "$.whatsappconsent",
+                  "AudienceMNO": "@.csvfileconsent"
             },
 
             "methods": {
-                  "daydate": "updatedAt"
+                  "daydate": "",
+                  "date_iso1806": {
+                        "DateOfBirth": "DateOfBirth",
+                        "Updated": "updatedAt"
+                  },
+                  "phone_number": {
+                        "Home Phone" : "phone",
+                        "phone": "phone",
+                        "Mobile Number": "Mobile Number"
+                  }
+                  //"daydate": "updatedAt"
             },
-            "jsonmap": {
+
+            "jsonmap": {            //replace with "AddColumns" ??? 
+                  "Audience_JSONMap": "$.betaaudience",
+                  "EmailChannel_JSONMap": "$.betaconsent",
+                  "contactId_JSONMap": "$.id",
                   "Email": "$.email",
                   "PostalCode": "$.zipcode",
                   "Group": "$.id",
@@ -64,13 +90,13 @@
                   "Access_Phone": "$.phone",
                   "Employee": "$.registeredAdvisorTitle"
             },
-      
+
             "csvmap": {
                   //"Col_AA_SR": "description",
-                  //"Col_BB_SE": "conditions"
+                  //"Col_BB_SE": "status"
             },
-           
-            "ignore": [
+
+            "ignore": [             //Replace with RemoveColumns???
                   "email",
                   "acousticPhoto",
                   "registeredAdvisorTitle",
@@ -83,7 +109,11 @@
                   "zipcode",
                   "brandApprovedPhoto",
                   "designations",
-                  "updatedAt"
+                  "updatedAt",
+                  "Audience_JSONMap",
+                  "EmailChannel_JSONMap",
+                  "contactId_JSONMap",
+                  "whatsappconsent"
             ]
       }
 }
