@@ -251,7 +251,7 @@
           "type": "object",
           "description": "Optional, Addressable Fields to use as the key to update a Contact. Where the first param is the Addressable Field Name and the second param is the value to be recorded as the Addressable Field Value\nExamples:\nEmail: abcemail@domain.com          # Static value\nReferenceId: $.jsonpathValue    # JSONPath for JSON files\nUniqueId: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
-          "maxLength": 5,
+          "maxLength": 3,
           "properties": {
             "field1": {
               "type": "string",
@@ -335,20 +335,41 @@
           "properties": {
             "daydate": {
               "type": "string",
-              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not apply the transform.",
+              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc....) based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not invoke the transform.",
+              "minLength": 0
+            },
+            "date_iso1806_type": {
+              "type": "object",
+              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not invoke the transform.",
+              "minLength": 0
+            },
+            "phone_number_type": {
+              "type": "object",
+              "description": "Optional. Transform a common format Phone Number String to a Phone-Number Typed string for Connect. Leave value(s) empty to not invoke the transform.",
+              "minLength": 0
+            },
+            "string_to_number_type": {
+              "type": "object",
+              "description": "Optional. Transform a common string value to a Number typed value for Connect. Leave value(s) empty to not invoke the transform.",
               "minLength": 0
             },
             "method2": {
-              "type": "string",
-              "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not apply the transform.",
+              "type": "object",
+              "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not invoke the transform.",
               "minLength": 0
             }
           },
           "required": [
-            "daydate"
+            "daydate",
+            "date_iso1806_type",
+            "phone_number_type",
+            "string_to_number_type"
           ],
           "default": {
-            "daydate": ""
+            "daydate":"",
+            "date_iso1806_type":{"":""},
+            "phone_number_type":{"":""},
+            "string_to_number_type":{"":""}
           }
         },
         "jsonmap": {

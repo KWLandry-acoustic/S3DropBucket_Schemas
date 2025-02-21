@@ -1,5 +1,5 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=3",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=1",
       "selectivelogging": "",
       "Customer": "Customer_",
       "format": "json",
@@ -63,7 +63,7 @@
             },
 
             "methods": {
-                  "daydate": "",
+                  "daydate": "$.updatedAt",
                   "date_iso1806": {
                         "DateOfBirth": "DateOfBirth",
                         "Updated": "updatedAt"
@@ -72,8 +72,10 @@
                         "Home Phone" : "phone",
                         "phone": "phone",
                         "Mobile Number": "Mobile Number"
+                  },
+                  "string_to_number": {
+                        "Group Id" : "$.'Group Id'"
                   }
-                  //"daydate": "updatedAt"
             },
 
             "jsonmap": {            //replace with "AddColumns" ??? 
@@ -113,7 +115,12 @@
                   "Audience_JSONMap",
                   "EmailChannel_JSONMap",
                   "contactId_JSONMap",
-                  "whatsappconsent"
+                  "whatsappconsent",
+                  "betaaudience",
+                  "betaconsent",
+                  "EmailChannel_JSONMap",
+                  "contactId_JSONMap",
+                  "AE_Name"
             ]
       }
 }
