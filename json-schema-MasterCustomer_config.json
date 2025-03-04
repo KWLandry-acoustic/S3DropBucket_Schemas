@@ -6,6 +6,7 @@
   "required": [
     "selectivelogging",
     "Customer",
+    "dataflow",
     "format",
     "separator",
     "updates",
@@ -216,6 +217,81 @@
       ],
       "minLength": 0
     },
+    "responseBroker": {
+      "type": "object",
+      "description": "Response Broker Configuration",
+      "required": [
+        "destination",
+        "bucket",
+        "folder",
+        "prefix",
+        "query"
+      ],
+      "properties": {
+        "destination": {
+          "type": "object",
+          "description": "Through what channel to return the Response Broker response",
+          "minLength": 0,
+          "maxLength": 1,
+          "enum": [
+            "s3",
+            "http(future)"
+          ],
+          "default": "S3"
+        },
+        "bucket": {
+          "type": "object",
+          "description": "Response Broker response bucket",
+          "minLength": 0,
+          "maxLength": 100,
+          "default": "customerbucket"
+        },
+        "folder": {
+          "type": "object",
+          "description": "Response Broker response folder",
+          "minLength": 0,
+          "maxLength": 100,
+          "default": "/queryresponse"
+        },
+        "prefix": {
+          "type": "object",
+          "description": "Response Broker response object prefix ",
+          "minLength": 0,
+          "maxLength": 100,
+          "default": "queryresponse"
+        },
+        "query": {
+          "type": "object",
+          "description": "Query to be executed",
+          "minLength": 0,
+          "maxLength": 15000,
+          "default": {
+            "Contacts": {
+              "contacts": {
+                "dataSetId": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx",
+                "type": "AUDIENCE",
+                "pageInfo": {
+                  "count": null,
+                  "endCursor": null,
+                  "startCursor": null,
+                  "hasNextPage": null,
+                  "hasPreviousPage": null
+                },
+                "edges": {
+                  "node": {
+                    "attributes": {
+                      "name": null,
+                      "value": null,
+                      "type": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "transforms": {
       "type": "object",
       "description": "Transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include Audience status, Consent status, unique methods, jsonmapping, csvmapping, and ignore columns",
@@ -247,7 +323,7 @@
             "contactkey": "123456789"
           }
         },
-        "addressablefields":{
+        "addressablefields": {
           "type": "object",
           "description": "Optional, Addressable Fields to use as the key to update a Contact. Where the first param is the Addressable Field Name and the second param is the value to be recorded as the Addressable Field Value\nExamples:\nEmail: abcemail@domain.com          # Static value\nReferenceId: $.jsonpathValue    # JSONPath for JSON files\nUniqueId: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
@@ -294,8 +370,8 @@
               "type": "string",
               "minLength": 0
             },
-            "statement":{
-              "type":"object",
+            "statement": {
+              "type": "object",
               "description": "Optional, a pre-Defined Consent Statement to be included in the Consent update. Example: consentGroups: [{\"consentGroupId\": \"97660d76-02d8-5fd6-xxxx-000000000000\", \"status\": \"OPT_IN\"}, {\"consentGroupId\": \"97660d76-02d8-5fd6-xxxx-000000000000\", \"channels\": {\"channel\": \"EMAIL\", \"status\": \"OPT_IN_UNVERIFIED\"}}]"
             }
           },
@@ -328,7 +404,6 @@
             "AudienceDEF": "@.csvfile_AudienceColumn"
           }
         },
-
         "methods": {
           "type": "object",
           "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
@@ -366,10 +441,16 @@
             "string_to_number_type"
           ],
           "default": {
-            "daydate":"",
-            "date_iso1806_type":{"":""},
-            "phone_number_type":{"":""},
-            "string_to_number_type":{"":""}
+            "daydate": "",
+            "date_iso1806_type": {
+              "": ""
+            },
+            "phone_number_type": {
+              "": ""
+            },
+            "string_to_number_type": {
+              "": ""
+            }
           }
         },
         "jsonmap": {

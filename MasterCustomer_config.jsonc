@@ -1,58 +1,122 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=1",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=3",
+
       "selectivelogging": "",
-      "Customer": "Customer_",
+
+      "Customer": "MasterCustomer_", 
+
       "format": "json",
       "separator": "\n",
+
       "updates": "Multiple", //Multiple, Singular
-      "targetupdate": "Connect",
+
       "updatemaxrows": 1000,
+
       "pod": "4",
       "region": "us",
-      "updatetype": "CreateContacts", //DBKeyed, DBNonKeyed, Relational, ReferenceSet, CreateContacts, UpdateContacts, CreateAttributes
-      "updatecontactskey": "Email",
+
+      "targetupdate": "Connect",
+      "updatetype": "UpdateContacts", //DBKeyed, DBNonKeyed, Relational, ReferenceSet, CreateContacts, UpdateContacts   //, CreateAttributes
+
       //"listId": "44294868",
       //"listName": "Weather_Forecast_RT",
-      //"clientId": "xxxxxxx4-bac2-4b6f-bee6-xxxxxxxxxxxx",
-      //"clientSecret": "xxxxxx1cc-47b5-4579-a283-xxxxxxxxxxxx",
-      //"refreshToken": "xxxxxxf50hNZlFPpA0qwr9wPUdQBwexr2wwv-xxxxxxxxxxxx",
-      "listId": "",
-      "listName": "",
-      "clientId": "",
-      "clientSecret": "",
-      "refreshToken": "",
-      "lookupkeys": [],
+      //"clientId": "01922b64-bac2-4b6f-bee6-3ffc8cb1aaf1",
+      //"clientSecret": "3b0dd1cc-47b5-4579-a283-e9f708f9028b",
+      //"refreshToken": "r8dQcorf50hNZlFPpA0qwr9wPUdQBwexr2wwv-nJKlGAS1",
 
-      "dataSetId": "df07969b-7126-47f2-812d-b7b5876627f7",
-      "subscriptionId": "bb6758fc16bbfffbe4248214486c06cc3a924edf",
-      "x_api_key": "xxxxxxc76e24cd6bf31d202xxxxxxxxxxxx",
+      "listid": "",
+      "listname": "",
+      "clientid": "",
+      "clientsecret": "",
+      "refreshtoken": "",
+
+
+      "datasetid": "df07969b-7126-47f2-812d-b7b5876627f7",
+      "subscriptionid": "bb6758fc16bbfffbe4248214486c06cc3a924edf",
+      "x_api_key": "41d0316c76e24cd6bf31d202a12a37c2_gka",
       "x_acoustic_region": "us-east-1",
-      
-      
+
+      "responseBroker": {
+            "type": "S3",    //S3, or "REST Socket"?? 
+            "bucket": "customerbucket",
+            "folder": "queryresponse",
+            "prefix": "dataflow1",
+            "query": {
+                  "Contacts": {
+                    "contacts": {
+                      "dataSetId": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx",
+                      "type": "AUDIENCE",
+                      "pageInfo": {
+                        "count": null,
+                        "endCursor": null,
+                        "startCursor": null,
+                        "hasNextPage": null,
+                        "hasPreviousPage": null
+                      },
+                      "edges": {
+                        "node": {
+                          "attributes": {
+                            "name": null,
+                            "value": null,
+                            "type": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+      },
+
       "transforms": {
-            "contactid": "9993456789", //"$.jsonfileValue"  "@.csvfileColumn"
-            "contactkey": "123456789", //"$.jsonfileValue"  "@.csvfileColumn"
-            "addressablefields": { //only 3 allowed 
-                  "field1": "Email",
-                  "field2": "PostalCode",
-                  "field3": "Group",
-                  "field4": "$.jsonfileValue", //example
-                  "field5": "@.csvfileColumn" //example
-            },
-            "consent": { 
-                  "Email": "OPT_IN_UNVERIFIED",       //Static Values: Use When Consent status is not in the Data (use JSONMap/CSVMap when Consent is in data)
-                  "SMS": "OPT_OUT",
-                  "WhatsApp": "$.whatsappconsent",
-                  "Email2": "@.csvfileColumn",
-                  // "NewsletterWeekly": "3a7134b8-dcb5-509a-b7ff-946b48333cc9",
-                  // "CustomAcmePromo": "80c6d728-556c-5c21-b931-35332e41b853"
+            "contactid": "", //"$.jsonfileValue"  "@.csvfileColumn"
+            "contactkey": "",       //"$.email", //"$['Unique ID']",    // "$.id", //"$.jsonfileValue"  "@.csvfileColumn"
+            "addressablefields": {         //only 3 allowed 
+                  //"Email": "$.email",
+                  //"Mobile Number": "$['Mobile Number']",
+                  //"Example3": "999445599",
+                  //"Example4": "$.jsonfileValue", //example
+                  //"Example5": "@.csvfileColumn" //example
                   "statement": {
-                        "consentGroups": [
-                              { "consentGroupId": "97660d76-02d8-5fd6-xxxx-000000000000", "status": "OPT_IN" },
-                              { "consentGroupId": "97660d76-02d8-5fd6-xxxx-000000000000",
-                                    "channels": { "channel": "EMAIL", "status": "OPT_IN_UNVERIFIED"}
-                              }
+                        "addressable": [
+                        { "field": "Email", "eq": "$.email" }   //, 
+                        //{ "field": "SMS", "eq": "$['Mobile Number']" }     
                         ]
+                        }
+            },
+            "consent": {            //Can use either mapping or a "statement" definition, if defined, a 'statement' definition overrides any other Consent config. 
+                        
+                  "Email": "OPT_IN_UNVERIFIED",       //Static Values: Use When Consent status is not in the Data
+                  "SMS": "OPT_OUT",                   //Static Values: Use When Consent status is not in the Data
+                  "WhatsApp": "$.whatsappconsent", //Dynamic Values: Use when consent data can be mapped from the data (JSONPath in this case) .
+                  "Email2": "@.csvfileColumn", //Dynamic Values: Use when consent data can be mapped from the data (CSV Column reference in this case).
+                 
+                  
+                  "statement": {    //Mutually Exclusive: Use to define a Consent update to be used with this dataflow, useful to define a compound Group Consent statement as in the example in the description. 
+                        "channels": [
+                              {"channel": "EMAIL", "status": "OPT_IN"},
+                              {"channel": "SMS", "status": "OPT_IN"}
+                        ]
+
+                        //consent: {
+                        //  channels: [
+                        //    {channel: EMAIL, status: OPT_IN_UNVERIFIED}
+                        //    {channel: SMS, status: OPT_IN}
+                        //  ]
+                        //}
+
+                        //    Example Consent GroupIds
+                        //    "NewsletterWeekly": "3a7134b8-dcb5-509a-b7ff-946b48333cc9",
+                        //    "CustomAcmePromo": "80c6d728-556c-5c21-b931-35332e41b853",
+                        //
+                        //"consentGroups": [
+                        //     {"consentGroupId": "3a7134b8-dcb5-509a-b7ff-946b48333cc9", "status": "OPT_IN"}
+                        //]
+                        //"consentGroups": [
+                        //      { "consentGroupId": "3a7134b8-dcb5-509a-b7ff-946b48333cc9", "status": "OPT_IN" },
+                        //      { "consentGroupId": "80c6d728-556c-5c21-b931-35332e41b853",
+                        //            "channels": { "channel": "EMAIL", "status": "OPT_IN_UNVERIFIED" }
+                        //      }
+                        //]
                   }
             },
             "audienceupdate": { //Static Values: Use When Audience status is not in the Data (use JSONMap/CSVMap when Consent is in data)
@@ -64,26 +128,31 @@
 
             "methods": {
                   "daydate": "$.updatedAt",
-                  "date_iso1806": {
+
+                  "date_iso1806_type": {
                         "DateOfBirth": "DateOfBirth",
                         "Updated": "updatedAt"
                   },
-                  "phone_number": {
-                        "Home Phone" : "phone",
+
+                  "phone_number_type": {
+                        "Home Phone": "phone",
                         "phone": "phone",
                         "Mobile Number": "Mobile Number"
                   },
-                  "string_to_number": {
-                        "Group Id" : "$.'Group Id'"
+
+                  "string_to_number_type": {
+                        "Group ID": "Group ID"
                   }
             },
 
-            "jsonmap": {            //replace with "AddColumns" ??? 
+            "jsonmap": {                  //Now with CSV Mapping Char - Replace as "AddColumns" ??? 
+                  //"Unique ID": "$.id",
+                  "Mobile Number": "$['Mobile Number']",
                   "Audience_JSONMap": "$.betaaudience",
                   "EmailChannel_JSONMap": "$.betaconsent",
                   "contactId_JSONMap": "$.id",
-                  "Email": "$.email",
-                  "PostalCode": "$.zipcode",
+                  //"Email": "$.email",
+                  "PostalCode": "$.PostalCode",
                   "Group": "$.id",
                   "Firstname": "$.first",
                   "Lastname": "$.last",
@@ -98,8 +167,10 @@
                   //"Col_BB_SE": "status"
             },
 
-            "ignore": [             //Replace with RemoveColumns???
+            "ignore": [ //Replace with RemoveColumns???
+                  "Unique ID",
                   "email",
+                  //"Mobile Number",
                   "acousticPhoto",
                   "registeredAdvisorTitle",
                   "phone",
@@ -119,8 +190,10 @@
                   "betaaudience",
                   "betaconsent",
                   "EmailChannel_JSONMap",
-                  "contactId_JSONMap",
-                  "AE_Name"
+                  "AE_Name",
+                  "csvfileconsent",
+                  "Updated",
+                  "Home Phone"
             ]
       }
 }
