@@ -218,7 +218,7 @@
     },
     "responseBroker": {
       "type": "object",
-      "description": "Response Broker Configuration",
+      "description": "(Experimental) Response Broker Configuration",
       "required": [
         "destination",
         "bucket",
@@ -240,28 +240,28 @@
         },
         "bucket": {
           "type": "string",
-          "description": "Response Broker response bucket",
+          "description": "When Response Broker destination is S3, the bucket to hold the response",
           "minLength": 0,
           "maxLength": 100,
           "default": "customerbucket"
         },
         "folder": {
           "type": "string",
-          "description": "Response Broker response folder",
+          "description": "When Response Broker destination is S3, the folder to hold the response",
           "minLength": 0,
           "maxLength": 100,
           "default": "/queryresponse"
         },
         "prefix": {
           "type": "string",
-          "description": "Response Broker response object prefix ",
+          "description": "When Response Broker destination is S3, the response object prefix to be applied",
           "minLength": 0,
           "maxLength": 100,
           "default": "queryresponse"
         },
         "query": {
           "type": "object",
-          "description": "Query to be executed",
+          "description": "The Query to execute for the response",
           "minLength": 0,
           "maxLength": 15000,
           "default": {
