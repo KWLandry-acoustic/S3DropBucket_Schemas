@@ -1,5 +1,5 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=3",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=5",
 
       "selectivelogging": "",
 
@@ -37,7 +37,7 @@
       "x_acoustic_region": "us-east-1",
 
       "responseBroker": {
-            "type": "S3",    //S3, or "REST Socket"?? 
+            "destination": "S3",    //S3, or "REST Socket"?? 
             "bucket": "customerbucket",
             "folder": "queryresponse",
             "prefix": "dataflow1",
