@@ -18,7 +18,7 @@
   "properties": {
     "Customer": {
       "type": "string",
-      "description": "DataFlow Name - Best Practice 'CustomerName_DataflowName_'",
+      "description": "DataFlow Name - Best Practice 'CustomerName_DataflowName_'. Must end with an underscore '_' and be the last underscore in the name. Eg: Customer_DataFlow1_09-10-2024-dataseries99.json",
       "default": "CustomerDataFlow1_",
       "minLength": 3
     },
