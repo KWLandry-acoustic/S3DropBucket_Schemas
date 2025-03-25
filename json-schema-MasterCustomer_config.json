@@ -6,7 +6,6 @@
   "required": [
     "selectivelogging",
     "Customer",
-    "dataflow",
     "format",
     "separator",
     "updates",
@@ -40,7 +39,7 @@
     },
     "separator": {
       "type": "string",
-      "description": "Inbound data has this seperator (When different than the default for that type, JSON should the default of '\\n')",
+      "description": "Inbound data has this seperator (When different than the default for that type, JSON should use the default of '\\n')",
       "default": "\n",
       "minLength": 1,
       "enum": [
@@ -62,7 +61,7 @@
     },
     "updates": {
       "type": "string",
-      "description": "Inbound data is made up of small continuous updates, Singular or arrives in bulk, Multiple updates",
+      "description": "Inbound data is made up of small continuous updates, Singular or arrives in bulk as multiple updates, Multiple.",
       "minLength": 8,
       "maxLength": 8,
       "default": "Multiple",
@@ -74,8 +73,8 @@
     "updatemaxrows": {
       "type": "number",
       "description": "Emit a Safety Warning when the rows of any single inbound update exceeds this value",
-      "default": 1000,
-      "minimum": 10
+      "default": 10000,
+      "minimum": 1
     },
     "updatetype": {
       "type": "string",
@@ -229,7 +228,7 @@
       ],
       "properties": {
         "destination": {
-          "type": "object",
+          "type": "string",
           "description": "Through what channel to return the Response Broker response",
           "minLength": 0,
           "maxLength": 1,
@@ -240,21 +239,21 @@
           "default": "S3"
         },
         "bucket": {
-          "type": "object",
+          "type": "string",
           "description": "Response Broker response bucket",
           "minLength": 0,
           "maxLength": 100,
           "default": "customerbucket"
         },
         "folder": {
-          "type": "object",
+          "type": "string",
           "description": "Response Broker response folder",
           "minLength": 0,
           "maxLength": 100,
           "default": "/queryresponse"
         },
         "prefix": {
-          "type": "object",
+          "type": "string",
           "description": "Response Broker response object prefix ",
           "minLength": 0,
           "maxLength": 100,
