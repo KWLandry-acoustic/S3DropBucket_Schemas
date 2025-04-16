@@ -80,7 +80,7 @@
       "type": "string",
       "description": "The dataflow update-type to be used for the Connect or Campaign Org. Update as Relational, DBKeyed, DBNonKeyed, ReferenceSet, CreateUpdateContacts",
       "minLength": 7,
-      "maxLength": 14,
+      "maxLength": 20,
       "default": "Relational",
       "enum": [
         "Relational",
