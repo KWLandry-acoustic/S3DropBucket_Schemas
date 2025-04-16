@@ -1,5 +1,5 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=1",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=3",
 
       "selectivelogging": "",
 
@@ -16,7 +16,7 @@
       "region": "us",
 
       "targetupdate": "Connect",
-      "updatetype": "UpdateContacts", //DBKeyed, DBNonKeyed, Relational, ReferenceSet, CreateContacts, UpdateContacts   //, CreateAttributes
+      "updatetype": "CreateUpdateContacts", //DBKeyed, DBNonKeyed, Relational, ReferenceSet, CreateUpdateContacts   //, CreateAttributes
 
       //"listId": "44294868",
       //"listName": "Weather_Forecast_RT",

@@ -9,9 +9,9 @@
     "format",
     "separator",
     "updates",
+    "updatetype",
     "targetupdate",
     "updatemaxrows",
-    "updatetype",
     "transforms"
   ],
   "properties": {
@@ -61,7 +61,7 @@
     },
     "updates": {
       "type": "string",
-      "description": "Inbound data is made up of small continuous updates, Singular or arrives in bulk as multiple updates, Multiple.",
+      "description": "Inbound data is made up of small continuous updates (Singular) or arrives in bulk as multiple updates (Multiple).",
       "minLength": 8,
       "maxLength": 8,
       "default": "Multiple",
@@ -78,7 +78,7 @@
     },
     "updatetype": {
       "type": "string",
-      "description": "The dataflow update-type to be used for the Connect or Campaign Org. Update as Relational, DBKeyed, DBNonKeyed, ReferenceSet, CreateContacts, UpdateContacts",
+      "description": "The dataflow update-type to be used for the Connect or Campaign Org. Update as Relational, DBKeyed, DBNonKeyed, ReferenceSet, CreateUpdateContacts",
       "minLength": 7,
       "maxLength": 14,
       "default": "Relational",
@@ -87,8 +87,7 @@
         "DBKeyed",
         "DBNonKeyed",
         "ReferenceSet",
-        "CreateContacts",
-        "UpdateContacts"
+        "CreateUpdateContacts"
       ]
     },
     "lookupkeys": {
@@ -164,25 +163,25 @@
     },
     "datasetid": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the target datasetid to be updated",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the target datasetid to be updated",
       "minLength": 0,
       "default": ""
     },
     "subscriptionid": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers SubscriptionId of their Connect Org",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the Customers SubscriptionId of their Connect Org",
       "minLength": 0,
       "default": ""
     },
     "x_api_key": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Connect API x_api_key of their Connect Org (currently its the same value for all Connect Orgs)",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the Connect API x_api_key of their Connect Org (currently its the same value for all Connect Orgs)",
       "minLength": 0,
       "default": ""
     },
     "x_acoustic_region": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet, CreateContacts, or UpdateContacts what is the Customers Region Id of their Connect Org",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts then specify the Customers Connect Org. Region Id",
       "default": "us-east-1",
       "enum": [
         "us-east-1",
