@@ -404,31 +404,31 @@
         },
         "methods": {
           "type": "object",
-          "description": "Transform definitions for specific transforms. All Column references are direct, that is, JSONPath statements ($.ref to data) or CSVPath statements (@.refToColumn) are not used for these references. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
+          "description": "Transform definitions for specific transforms. All Column references are direct, that is, JSONPath statements ($.ref to data) or CSVPath statements (@.refToColumn) are Not used for these references. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
           "properties": {
             "daydate": {
               "type": "string",
-              "description": "Optional. Add a Column (daydate) for the Day of the Week (Monday, Tuesday, Wednesday, etc....) derived from the given Column. The Column defined must contain a valid Date value. Leave empty to not invoke the transform.",
+              "description": "Optional. {daydate: ReferenceColumn}.  Add a Column (daydate) for the Day of the Week (Monday, Tuesday, Wednesday, etc....) derived from the given ReferenceColumn. The ReferenceColumn must contain a valid Date value (use Ignore to remove original column from data). Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "date_iso1806_type": {
               "type": "object",
-              "description": "Optional. Transform a date from the given column to a valid Connect date format for that column. The Column defined must contain a valid Date value which will be replaced by a valid Connect date format. Leave empty to not invoke the transform.",
+              "description": "Optional. {NewColumn: ReferenceColumn}. Transform a date from the given ReferenceColumn to a valid Connect date format value and write the value to NewColumn. The ReferenceColumn must have a valid Date value (use Ignore to remove original column from data). If ReferenceColumn and NewColumn are the same name, will effectively replace the value in the Column. Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "phone_number_type": {
               "type": "object",
-              "description": "Optional. Transform a common format Phone Number String from the given column to a valid Connect Phone-Number format string value for that column. The column defined nust have a valid phone number which will be replaced by a valid Connect format phone number. Leave empty to not invoke the transform.",
+              "description": "Optional. {{NewColumn: ReferenceColumn}. Transform a common format Phone Number String from the ReferenceColumn to a valid Connect Phone-Number format string and write the value to NewColumn. The ReferenceColumn must have a valid Phone Number value (use Ignore to remove original column from data). If ReferenceColumn and NewColumn are the same name, will effectively replace the value in the Column. Leave empty to not invoke the  transform.",
               "minLength": 0
             },
             "string_to_number_type": {
               "type": "object",
-              "description": "Optional. Transform a common string number value from the given column to a valid Connect Number type. The column defined must have a valid string number value which will be replaced with a valid Connect number format value. Leave empty to not invoke the transform.",
+              "description": "Optional. {NewColumn: ReferenceColumn}. Transform a common string number value from the ReferenceColumn to a valid Connect Number type value and write the value to NewColumn. The ReferenceColumn must have a valid string number value (eg. 238883, 9994455, etc...). Use Ignore to remove original column from data. If ReferenceColumn and NewColumn are the same name, will effectively replace the value in the Column. Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "method2": {
               "type": "object",
-              "description": "Optional. A Placeholder for future Transformation Methods. Leave value(s) empty to not invoke the transform.",
+              "description": "Optional. {NewColumn: ReferenceColumn}. A Placeholder for future Transformation Methods. Leave value(s) empty to not invoke the transform.",
               "minLength": 0
             }
           },
