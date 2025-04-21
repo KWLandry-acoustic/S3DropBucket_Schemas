@@ -453,7 +453,7 @@
         },
         "jsonmap": {
           "type": "object",
-          "description": "Optional. Write a New Column with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave value(s) empty to not apply the transform.",
+          "description": "Optional. {NewColumn: JSONPath Reference}. Write a NewColumn with the value from the JSON data, specified using a JSONPath statement. Use a JSONPath editor and a sample of the data to determine the statement needed. Leave empty to not apply the transform.",
           "properties": {
             "Col1": {
               "type": "string",
@@ -492,7 +492,7 @@
       },
       "csvmap": {
         "type": "object",
-        "description": "Optional. Write a New Column with the value from the Column of the CSV data. Ie. Replace 'Col1' with the name of the New Column and specify the Column in the data to use as the value of the New Column ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave value(s) empty to not apply the transform.",
+        "description": "Optional. {NewColumn: ReferenceColumn}. Write a NewColumn with the value from the ReferenceColumn of the CSV data. Ie. Replace 'Col1' with the name of the NewColumn and specify the Column in the data to use as the value of the NewColumn ('Street1': 'StreetAddress1' creates a new Column Street1 with the value of StreetAddress1).  Leave empty to not apply the transform.",
         "properties": {
           "Col1": {
             "type": "string",
@@ -511,7 +511,7 @@
       },
       "ignore": {
         "type": "array",
-        "description": "Optional. Ignore a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
+        "description": "Optional. Ignore (Remove) a Column in the data, effectively remove the Column from the data. Ie. 'Col1' will remove the Column Col1 from the data. This action is always performed last so that previous Transformations adding columns can have the source columns removed from the data.  Leave value(s) empty to not apply the transform.",
         "items": {
           "properties": {
             "Col1": {
