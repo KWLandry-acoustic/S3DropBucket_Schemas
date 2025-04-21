@@ -169,19 +169,19 @@
     },
     "subscriptionid": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the Customers SubscriptionId of their Connect Org",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the Customers SubscriptionId of the Customers Connect Org",
       "minLength": 0,
       "default": ""
     },
     "x_api_key": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the Connect API x_api_key of their Connect Org (currently its the same value for all Connect Orgs)",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts what is the Connect API x_api_key of the Customers Connect Org",
       "minLength": 0,
       "default": ""
     },
     "x_acoustic_region": {
       "type": "string",
-      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts then specify the Customers Connect Org. Region Id",
+      "description": "When 'updatetype' is ReferenceSet or CreateUpdateContacts then specify the Connect API x-region-id of the Customers Connect Org",
       "default": "us-east-1",
       "enum": [
         "us-east-1",
@@ -404,26 +404,26 @@
         },
         "methods": {
           "type": "object",
-          "description": "Transform code for specific transforms. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
+          "description": "Transform definitions for specific transforms. All Column references are direct, that is, JSONPath statements ($.ref to data) or CSVPath statements (@.refToColumn) are not used for these references. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
           "properties": {
             "daydate": {
               "type": "string",
-              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc....) based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not invoke the transform.",
+              "description": "Optional. Add a Column (daydate) for the Day of the Week (Monday, Tuesday, Wednesday, etc....) derived from the given Column. The Column defined must contain a valid Date value. Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "date_iso1806_type": {
               "type": "object",
-              "description": "Optional. Add a Column of the Day of the Week (Monday, Tuesday, Wednesday, etc.... based on the defined Column in the data. The Column defined must contain a valid Date value. Leave value(s) empty to not invoke the transform.",
+              "description": "Optional. Transform a date from the given column to a valid Connect date format for that column. The Column defined must contain a valid Date value which will be replaced by a valid Connect date format. Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "phone_number_type": {
               "type": "object",
-              "description": "Optional. Transform a common format Phone Number String to a Phone-Number Typed string for Connect. Leave value(s) empty to not invoke the transform.",
+              "description": "Optional. Transform a common format Phone Number String from the given column to a valid Connect Phone-Number format string value for that column. The column defined nust have a valid phone number which will be replaced by a valid Connect format phone number. Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "string_to_number_type": {
               "type": "object",
-              "description": "Optional. Transform a common string value to a Number typed value for Connect. Leave value(s) empty to not invoke the transform.",
+              "description": "Optional. Transform a common string number value from the given column to a valid Connect Number type. The column defined must have a valid string number value which will be replaced with a valid Connect number format value. Leave empty to not invoke the transform.",
               "minLength": 0
             },
             "method2": {
