@@ -217,7 +217,7 @@
     },
     "responseBroker": {
       "type": "object",
-      "description": "(Experimental) Response Broker Configuration",
+      "description": "FUTURE - (Experimental) Response Broker Configuration",
       "required": [
         "destination",
         "bucket",
@@ -297,7 +297,6 @@
         "contactid",
         "contactkey",
         "addressablefields",
-        "audienceupdate",
         "consent",
         "methods",
         "jsonmap",
@@ -305,25 +304,25 @@
         "ignore"
       ],
       "properties": {
-        "contactid": {
+        "contactKey": {
           "type": "string",
           "minLength": 0,
-          "description": "Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath foeserved JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
+          "description": "Optional. Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath foeserved JSON files\nContactKey: @.csvfileColumn    # Column name for CSV files",
           "default": {
             "contactid": "123456789"
           }
         },
-        "contactkey": {
+        "contactId": {
           "type": "string",
           "minLength": 0,
-          "description": "Examples: \nContactId: 123456789,        // specify a static value \nContactId: $.jsonpathValue,  // When a JSON datafile, specify a value using JSONPath statement \nContactId: @.csvfileColumn   // When a CSV datafile specify a value from a Column in the data",
+          "description": "Optional. Examples: \nContactId: 123456789,        // specify a static value \nContactId: $.jsonpathValue,  // When a JSON datafile, specify a value using JSONPath statement \nContactId: @.csvfileColumn   // When a CSV datafile specify a value from a Column in the data",
           "default": {
             "contactkey": "123456789"
           }
         },
         "addressablefields": {
           "type": "object",
-          "description": "Optional, Addressable Fields to use as the key to update a Contact. Where the first param is the Addressable Field Name and the second param is the value to be recorded as the Addressable Field Value\nExamples:\nEmail: abcemail@domain.com          # Static value\nReferenceId: $.jsonpathValue    # JSONPath for JSON files\nUniqueId: @.csvfileColumn      # Column name for CSV files",
+          "description": "Optional. Addressable Fields to use as the key to update a Contact. Where the first param is the Addressable Field Name and the second param is the value to be recorded as the Addressable Field Value\nExamples:\nEmail: abcemail@domain.com          # Static value\nReferenceId: $.jsonpathValue    # JSONPath for JSON files\nUniqueId: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
           "maxLength": 3,
           "properties": {
@@ -352,21 +351,36 @@
         },
         "consent": {
           "type": "object",
-          "description": "Optional, Consent(s) and statuses to be mapped from this stream of data (dataflow) where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status (OPT_IN, OPT_OUT, OPT_IN_UNVERIFIED)\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
+          "description": "Optional, Consent(s) and statuses to be mapped from this stream of data (dataflow) where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status (OPT_IN, OPT_OUT, OPT_IN_UNVERIFIED)\nExamples:\nEmail: 123456789          # Static value  \nEmail: $.jsonpathValue    # JSONPath for JSON files  \nSMS: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
           "maxLength": 20,
           "properties": {
             "Email": {
               "type": "string",
-              "minLength": 0
+              "minLength": 0,
+              "enum":[
+                "OPT_IN",
+                "OPT_OUT",
+                "OPT_IN_UNVERIFIED"
+              ]
             },
             "SMS": {
               "type": "string",
-              "minLength": 0
+              "minLength": 0,
+              "enum":[
+                "OPT_IN",
+                "OPT_OUT",
+                "OPT_IN_UNVERIFIED"
+              ]
             },
             "WhatsApp": {
               "type": "string",
-              "minLength": 0
+              "minLength": 0,
+              "enum":[
+                "OPT_IN",
+                "OPT_OUT",
+                "OPT_IN_UNVERIFIED"
+              ]
             },
             "statement": {
               "type": "object",
@@ -374,16 +388,14 @@
             }
           },
           "default": {
-            "Email": "OPT_IN_UNVERIFIED",
-            "SMS": "OPT_IN",
-            "WhatsApp": "OPT_OUT",
-            "Email2": "$.json_emailchannel2consentvalue",
-            "Email3": "@.csvfile_emailchannel3consentvalue"
+            "Email": "OPT_OUT",
+            "SMS": "OPT_OUT",
+            "WhatsApp": "OPT_OUT"
           }
         },
         "audienceupdate": {
           "type": "object",
-          "description": "Optional, Audience(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Audience Name and the second param is the value to be recorded as the Audience Status\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
+          "description": "FUTURE-Ignore for Now, Audience(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Audience Name and the second param is the value to be recorded as the Audience Status\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
           "minLength": 0,
           "maxLength": 50,
           "properties": {
