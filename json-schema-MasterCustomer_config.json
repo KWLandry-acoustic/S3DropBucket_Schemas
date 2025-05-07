@@ -39,7 +39,7 @@
     },
     "separator": {
       "type": "string",
-      "description": "Inbound data has this seperator (When different than the default for that type, JSON should use the default of '\\n')",
+      "description": "Inbound data has this separator (When different than the default for that type, JSON should use the default of '\\n')",
       "default": "\n",
       "minLength": 1,
       "enum": [
@@ -342,7 +342,7 @@
         },
         "consent": {
           "type": "object",
-          "description": "Optional, Consent(s) and statuses to be mapped from this stream of data (dataflow) where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status (OPT_IN, OPT_OUT, OPT_IN_UNVERIFIED)\nExamples:\nEmail: 123456789          # Static value  \nEmail: $.jsonpathValue    # JSONPath for JSON files  \nSMS: @.csvfileColumn      # Column name for CSV files",
+          "description": "Optional, Consent(s) and consent statuses to be mapped from the data where the first param is the Channel Consent Name (Email, SMS, WhatsApp) and the second param is the value to be recorded as the Channel Consent Status of either OPT_IN, OPT_OUT, or OPT_IN_UNVERIFIED. \nExamples:\nEmail: OPT_IN          # Static value  \nEmail: $.jsonpathValue    # JSONPath for JSON attribute value  \nSMS: @.csvfileColumn      # CSV Column for column value",
           "minLength": 0,
           "maxLength": 20,
           "properties": {
@@ -352,14 +352,7 @@
               "properties": {
             "p2": {
                 "type": "string",
-                "pattern": "^\\{\\{OPT_IN\\}\\}(_\\{\\{[123]\\}\\})*$"
-            }
-              // "enum":[
-              //   "OPT_IN",
-              //   "OPT_OUT",
-              //   "OPT_IN_UNVERIFIED",
-              //   "$."
-              // ]
+                "pattern": "(?:OPT_IN_UNVERIFIED)|(?:OPT_IN)|(?:OPT_OUT)|(\\$\\..*?)\\\"|(\\@\\..*?)\\\""
             },
             "SMS": {
               "type": "string",
@@ -540,6 +533,8 @@
           }
         ]
       }
+    }
+  }
     }
   }
 }
