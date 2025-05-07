@@ -1,5 +1,5 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=1",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/S3DropBucket_Schemas/main/json-schema-MasterCustomer_config.json?ref=3",
 
       "selectivelogging": "",
 
@@ -68,7 +68,6 @@
       },
 
       "transforms": {
-            "contactid": "", //"$.jsonfileValue"  "@.csvfileColumn"
             "contactkey": "",       //"$.email", //"$['Unique ID']",    // "$.id", //"$.jsonfileValue"  "@.csvfileColumn"
             "addressablefields": {         //only 3 allowed 
                   //"Email": "$.email",
