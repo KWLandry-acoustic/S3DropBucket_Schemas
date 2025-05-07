@@ -349,7 +349,7 @@
             "Email": {
               "type": "string",
               "minLength": 0,
-              "pattern": "^(OPT_IN_UNVERIFIED|OPT_IN|OPT_OUT|\\$\\..*|\\@\\..*)$"
+              "pattern": "^(OPT_IN_UNVERIFIED|OPT_IN|OPT_OUT|\\$\\.|\\@\\.)$"
             },
             "SMS": {
               "type": "string",
