@@ -303,12 +303,12 @@
         "ignore"
       ],
       "properties": {
-        "contactKey": {
+        "contactkey": {
           "type": "string",
           "minLength": 0,
           "description": "Optional. Contact Key used to Update a specific Contact. Where the first param is the Key Name and the second param is the value to be used as the Key Value. Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON attribute value\nContactKey: @.csvfileColumn    # CSV Column name for Column value",
           "default": {
-            "contactid": "123456789"
+            "contactkey": "123456789"
           }
         },
         "addressablefields": {
@@ -516,10 +516,8 @@
           }
         },
         "default": [
-          {
-            "Col1": "",
-            "Col2": ""
-          }
+         "col1",
+         "col2"
         ]
       }
     }
