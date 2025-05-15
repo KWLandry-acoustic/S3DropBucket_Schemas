@@ -118,13 +118,6 @@
                         //]
                   }
             },
-            "audienceupdate": { //Static Values: Use When Audience status is not in the Data (use JSONMap/CSVMap when Consent is in data)
-                  "AudienceXYZ": "Exited",
-                  "AudienceABC": "Entered",
-                  "AudiencePQR": "$.whatsappconsent",
-                  "AudienceMNO": "@.csvfileconsent"
-            },
-
             "methods": {
                   "daydate": "$.updatedAt",
 

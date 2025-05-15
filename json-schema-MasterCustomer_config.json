@@ -294,23 +294,12 @@
       "type": "object",
       "description": "Transformations to be applied to the inbound data. These are all Optional, use empty values to not apply the transformation. Options include Audience status, Consent status, unique methods, jsonmapping, csvmapping, and ignore columns",
       "required": [
-        "contactkey",
-        "addressablefields",
-        "consent",
         "methods",
         "jsonmap",
         "csvmap",
         "ignore"
       ],
       "properties": {
-        "contactkey": {
-          "type": "string",
-          "minLength": 0,
-          "description": "Optional. Contact Key used to Update a specific Contact. Where the first param is the Key Name and the second param is the value to be used as the Key Value. Examples:\nContactKey: 123456789          # Static value\nContactKey: $.jsonpathValue    # JSONPath for JSON attribute value\nContactKey: @.csvfileColumn    # CSV Column name for Column value",
-          "default": {
-            "contactkey": "123456789"
-          }
-        },
         "addressablefields": {
           "type": "object",
           "description": "Optional. Addressable Fields to use as the reference to Update a specific Contact. Where the first param is the Addressable Field Name and the second param is the value to be used as the Addressable Fields Value\nExamples:\nEmail: abcemail@domain.com          # Static value\nReferenceId: $.jsonpathValue    # JSONPath for JSON attribute value.\nUniqueId: @.csvfileColumn      # CSV Column name for Column value.",
@@ -372,27 +361,6 @@
             "WhatsApp": "OPT_OUT"
           }
         },
-        "audienceupdate": {
-          "type": "object",
-          "description": "FUTURE-Ignore for Now, Audience(s) and statuses to be associated with this stream of data (dataflow) where the first param is the Audience Name and the second param is the value to be recorded as the Audience Status\nExamples:\nEmail: 123456789          # Static value\nEmail: $.jsonpathValue    # JSONPath for JSON files\nSMS: @.csvfileColumn      # Column name for CSV files",
-          "minLength": 0,
-          "maxLength": 50,
-          "properties": {
-            "AudienceXYZ": {
-              "type": "string",
-              "minLength": 3
-            },
-            "AudienceABC": {
-              "type": "string",
-              "minLength": 3
-            }
-          },
-          "default": {
-            "AudienceXYZ": "AudienceColumn1",
-            "AudienceABC": "$.json_AudienceValue",
-            "AudienceDEF": "@.csvfile_AudienceColumn"
-          }
-        },
         "methods": {
           "type": "object",
           "description": "Transform definitions for specific transforms. All Column references are direct, that is, JSONPath statements ($.ref to data) or CSVPath statements (@.refToColumn) are Not used for these references. For each Method an empty Value indicates to Not perform the Transformation ie. daydate: \"\".",
@@ -424,10 +392,7 @@
             }
           },
           "required": [
-            "daydate",
-            "date_iso1806_type",
-            "phone_number_type",
-            "string_to_number_type"
+            "daydate"
           ],
           "default": {
             "daydate": "",
@@ -461,14 +426,6 @@
           }
         },
         "default": {
-          "audienceupdate": [
-            {
-              "AudienceX1": "$.audienceColumn1"
-            },
-            {
-              "AudienceX2": "$.audienceColumn2"
-            }
-          ],
           "channelconsent": [
             {
               "EMAIL": "$.audienceColumn1"
@@ -477,7 +434,6 @@
               "SMS": "$.audienceColumn2"
             }
           ],
-          "contactkey": "",
           "contactid": ""
         }
       },
