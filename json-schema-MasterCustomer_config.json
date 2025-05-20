@@ -95,7 +95,7 @@
       "description": "When updatetype is DBNonKeyed, what are the LookUp Keys to be used to update records (use a comma seperated list between the brackets) ",
       "minLength": 0,
       "maxLength": 50,
-      "default": "[]"
+      "default": [""]
     },
     "listid": {
       "type": "string",
