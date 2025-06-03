@@ -11,7 +11,7 @@
 
       //Send all Logging data to an S3 Bucket
       "s3dropbucket_logbucket": "s3dropbucket-logs",
-      "s3dropbucket_log": "CloudWatch", //Log to the S3 bucket instead of CloudWatch (incomplete tbd.)
+      "s3dropbucket_log": "CloudWatch", //Log to the S3 bucket instead of CloudWatch (incomplete TBD.)
 
       //S3 Drop Bucket for this deployment of the Lambda function
       "s3dropbucket": "s3dropbucket",
@@ -24,9 +24,9 @@
 
       //SQS Queue for this deployment of the Lambda function
       // "s3DropBucketWorkQueue": "https://sqs.us-east-1.amazonaws.com/777957353822/tricklercacheQueue",
-      "s3dropbucket_workqueue": "https://sqs.us-east-1.amazonaws.com/777957353822/S3DropBucketQueue",
+      "s3dropbucket_workqueue": "https://sqs.us-east-1.amazonaws.com/777957353822/s3dropbucketQueue",
 
-      //Firehose Stream definition for this deployment of s3dropbucket
+      //Firehose Stream definition for this deployment of s3dropbucket (case sensitive)
       "s3dropbucket_firehosestream": "S3DropBucket_Aggregator",
 
       //Quiesce Processing of the S3 Drop Bucket (Customer Facing Bucket for new Work) 
@@ -98,47 +98,48 @@
       //
       //   CAUTION:   
       //               Some of the following Selective Debug options create significant Logging volume and can 
-      //               cause significant Logging Costs in AWS
-      //               Be Sure to remove as soon as possible after the Logging needed has been achieved
+      //               cause significant Logging Costs in AWS.
+      //               Be Sure to remove as soon as possible after the Logging needed has been achieved.
+      //          
       //   CAUTION:
       // 
       //Useful for Troubleshooting or monitoring, each Selective Debug turns on a detailed message about 
       //    various steps in the DropBucket Process.
 
-      //Basic Messaging (01-100)
-      //Message 01: Log
-      //Message 02: Log
+      //Basic Messaging (001-100)
+      //Message 001: Log
+      //Message 002: Log
       //...
-      //Message 97:   Basic Logging messaging. Log Processing Environment Variables
-      //Message 98:   Basic Logging messaging. Log Current s3dropbucket Options.
-      //Message 99:   Basic Logging messaging. Log Current s3dropbucket Logging Options.
+      //Message 97:   Log Environment Variables
+      //Message 98:   Log Current S3DropBucket Options.
+      //Message 99:   Log Current S3DropBucket Logging Options.
       //
-      //s3dropbucket Inboard Processing Logging (300->499)
+      //S3DropBucket Inboard Processing Logging (300->499)
       //ToDo: move 9xx series messages to 300 series
       //
-      //s3dropbucket ProcessBucket and Work Queue Logging (500->699) 
-      //Message 500:  Basic Logging messaging. ProcessBucket - Log receiving a batch of s3dropbucket Events to be processed for this Lambda invocation.
-      //Message 501:  Basic Logging messaging. ProcessBucket - Log data being read and processed for the file being processed from s3dropbucket
-      //Message 502:  Basic Logging messaging. ProcessBucket - Log opening of the file stream for the file being processed from s3dropbucket
-      //Message 503:  Basic Logging messaging. ProcessBucket - Log completion of processing all records of the file being processed from s3dropbucket
-      //Message 504:  Basic Logging messaging. ProcessBucket - Log Deletions of s3dropbucket file after successfully processed.  
-      //Message 505:  Basic Logging messaging. ProcessBucket - Log Completion of processing all Events of this batch of processing for this Lambda invocation.
-      //Message 506:  Basic Logging messaging. ProcessWorkQueue - Log receiving a batch of Work Queue Events to be processed for this Lambda invocation.
-      //Message 507:  Basic Logging messaging. ProcessWorkQueue - Log each Work file Processing Start and Completion from the Work Queue (with SQS Batch Fail Entries for Retry on completion) 
-      //Message 508:  Basic Logging messaging. ProcessWorkQueue - Log Work Successfully (or Partially Successfully) Posted to Campaign from Work Queue 
-      //Message 509:  Basic Logging messaging. ProcessWorkQueue - Log SQSBatchFail Items
-      //Message 510:  Basic Logging messaging. ProcessWorkQueue - Log completion of processing with the number of Work Queue records processed and number and list of Items to be Retried.
-      //Message 511:  Basic Logging messaging. ProcessWorkQueue - Log short message of Updates POSTed
-      //Message 512:  Basic Logging messaging. ProcessWorkQueue - Log the retrieval of S3 files off the Work Bucket
-      //Message 513:  Basic Logging messaging. ProcessWorkQueue - Log the entire SQS Queue Message for each SQS Queue event. 
-      //Message 514:  Basic Logging messaging. ProcessWorkQueue - Log the start of processing each object
-      //Message 515:  Basic Logging messaging. ProcessWorkQueue - Log when an update exceeds MaxRows defined in Customers Config
-      //Message 516:  Basic Logging messaging. ProcessWorkQueue - Log when work is set for Retry
-      //Message 517:  Basic Logging messaging. ProcessWorkQueue - Log the pull of Work files from the Work ProcessBucket 
-      //Message 518:  Basic Logging messaging. ProcessWorkQueue - Log  
+      //S3DropBucket ProcessBucket or Work Queue Logging (500->699) 
+      //Message 500:  ProcessBucket - Log receiving a batch of Events to be processed.
+      //Message 501:  ProcessBucket - Log data being read and processed for the S3 Object being processed.
+      //Message 502:  ProcessBucket - Log opening of the file stream for the S3 Object being processed.
+      //Message 503:  ProcessBucket - Log completion of processing all records of the S3 Object being processed.
+      //Message 504:  ProcessBucket - Log Deletions of the S3 Object after successfully processed.  
+      //Message 505:  ProcessBucket - Log Completion of processing all Events of this batch of processing for this Lambda invocation.
+      //Message 506:  ProcessWorkQueue - Log receiving a batch of Work Queued Events to be processed for this Lambda invocation.
+      //Message 507:  ProcessWorkQueue - Log each Work file Processing Start and Completion from the (SWS) Work Queue (with SQS Batch Fail Entries for Retry on completion) 
+      //Message 508:  ProcessWorkQueue - Log Work Successfully (or Partially Successfully) Posted to Campaign from Queued Work. 
+      //Message 509:  ProcessWorkQueue - Log SQSBatchFail Items
+      //Message 510:  ProcessWorkQueue - Log completion of processing with the number of Queued Work records processed and number and list of Items to be Retried.
+      //Message 511:  ProcessWorkQueue - Log short message of Updates POSTed
+      //Message 512:  ProcessWorkQueue - Log the retrieval of S3 Objects off the Queued Work Bucket (Process bucket)
+      //Message 513:  ProcessWorkQueue - Log the entire SQS Queue Message for each SQS Queue event. 
+      //Message 514:  ProcessWorkQueue - Log the start of processing each S3 Object
+      //Message 515:  ProcessWorkQueue - Log when an update exceeds MaxRows defined in Customers Config
+      //Message 516:  ProcessWorkQueue - Log when work is set for Retry
+      //Message 517:  ProcessWorkQueue - Log the pull of Work files from the Queued Work Bucket (Process bucket) 
+      //Message 518:  ProcessWorkQueue - Log  
 
       //...
-      //s3dropbucket SFTP (700->799) 
+      //S3DropBucket SFTP (700->799) 
       //Selective Debug 700: Log Event received 
       //Selective Debug 701: Log Selective Logging in effect
       //Selective Debug 702: Log  
@@ -151,7 +152,7 @@
       //Selective Debug 709: Log  
       //Selective Debug 710: Log  
 
-      //s3dropbucket Connect (800->899) 
+      //S3DropBucket Connect (800->899) 
       //Selective Debug 800: Log
       //Selective Debug 801: Log
       //Selective Debug 802: Log
@@ -161,50 +162,50 @@
 
       //ToDo: Reorg 900 messaging into 300s and 500s 
       //Selective Debug 900:  Log AccessToken activity (refresh and use)
-      //Selective Debug 901:  Log the current S3 DropBucket Config 
-      //Selective Debug 902:  Log the Batch and End packaging results of Parsing and Queueing the Work from processing an S3 DropBucket file, 
-      //Selective Debug 903:  Log the internal trace messaging of the Processing of each S3 DropBucket Object.
-      //Selective Debug 904:  Log the entire Batch of SQS Queue Work Messages sent to the Lambda function to be processed.  
+      //Selective Debug 901:  Log the current S3DropBucket Config 
+      //Selective Debug 902:  Log the results of Parsing and Queueing an S3 Object. 
+      //Selective Debug 903:  Log the end result of Processing each S3 Object.
+      //Selective Debug 904:  Log the entire Batch of Queued Work Messages (SQS) received.  
       //Selective Debug 905:  Log the Updates about to be POSTed to Campaign
-      //Selective Debug 906:  Log the JSON of RT updates to be packaged into XML Updates to Campaign (also see 916 for DB)
+      //Selective Debug 906:  Log the JSON created for Campaign Relational Table Updates (also see 916 for DB, and 917 for XML)
       //Selective Debug 907:  Log the SQS Message being written to the SQS Queue and the write of the Work File (Batch of Updates) to the S3 Process Bucket 
       //Selective Debug 908:  Log the outcome of the Update POST to Campaign (also helpful to see events marked for Retry) Also see 510
-      //Selective Debug 909:  Log Errors in Read Stream
-      //Selective Debug 910:  Log Customer Configs 
+      //Selective Debug 909:  Log Errors in the S3 Read Stream
+      //Selective Debug 910:  Log Customer Config for each S3 Object about to be processed. 
       //Selective Debug 911:  Log each SQS Event of a Batch of Events being processed (also see 904)
-      //Selective Debug 912:  Log retrieve of s3dropbucket Configuration file
-      //Selective Debug 913:  Log each OnData record (chunk) parsed in Processing an S3 DropBucket Object Content Stream
-      //Selective Debug 914:  Log the work file and outcome of Adding Work to the SQS Queue - Queueing the Work
+      //Selective Debug 912:  Log the retrieval of the S3DropBucket Configuration file (useful for deployment in new regions)
+      //Selective Debug 913:  Log each OnData record (chunk) parsed in the Read Stream of Processing an S3 Object.
+      //Selective Debug 914:  Log the Work file and outcome of Adding Work to the SQS Queue - Queueing the Work
       //Selective Debug 915:  Log the outcome of Storing and Queing Updates to the Work Bucket and Work Queue respectively. 
-      //Selective Debug 916:  Log the JSON of DB updates to be packaged into XML Updates to Campaign (also see 906 for RT)
-      //Selective Debug 917:  Log the XML created from the JSON updates
-      //Selective Debug 918:  Log the Packaging of Updates from File processing. 
-      //Selective Debug 919:  Log the Transforms configured and applied 
-      //Selective Debug 920:  Log the final outcome of all s3dropbucket bucket processing 
-      //Selective Debug 921:  Log the final outcome of all Work Process (Queue) Bucket processing
+      //Selective Debug 916:  Log the JSON created for Campaign Database Updates (also see 906 for RT)
+      //Selective Debug 917:  Log the XML created for Campaign Updates from the JSON (see also 906)
+      //Selective Debug 918:  Log the Object processed, number of updates it contained and the current Batch count about to be packaged as Queued Work. 
+      //Selective Debug 919:  Log the Transforms configured and applied.
+      //Selective Debug 920:  Log the final outcome of all S3DropBucket processing 
+      //Selective Debug 921:  Log the final outcome of all Queued Work (create SQS Queue Event and Queued Work file (Process Bucket)) processing
       //Selective Debug 922:  Log detailed result of sending *each* update to Firehose Aggregator (see 942 for summary reporting as this can be hundreds/thousands of updates reported)
       //Selective Debug 923:  Log any Quiesce in force
-      //Selective Debug 924:  Log each Delete of a successful processing of a queued Work file
-      //Selective Debug 925:  Log the Processing of an Aggregated file (Firehose Aggregated) from s3dropbucket
+      //Selective Debug 924:  Log each Delete of a successful processing of a Queued Work file
+      //Selective Debug 925:  Log the Processing of an Aggregation file (Firehose Aggregator).
       //Selective Debug 926:  Log POST Update Success
       //Selective Debug 927:  Log POST Update Failures 
       //Selective Debug 928:  Log Partial POST Update Success
       //Selective Debug 929:  Log Temporary POST Update Fails
-      //Selective Debug 930:  Log JSONPath Transform messaging 
-      //Selective Debug 931:  Log CSV Transform messaging
-      //Selective Debug 932:  Log Ignore Transform messaging
+      //Selective Debug 930:  Log Transform-JSONPath messaging 
+      //Selective Debug 931:  Log Transform-CSV messaging
+      //Selective Debug 932:  Log Transform-Ignore messaging
       //Selective Debug 933:  Log Transform Errors (currently only daydate)
       //Selective Debug 934:  Log Transform Errors/Exceptions 
       //Selective Debug 935:  Log Hard Failures when POSTing updates
       //Selective Debug 936:  Log the result of each POST regardless of outcome
-      //Selective Debug 937:  Log Prefix Focus in effect
+      //Selective Debug 937:  Log Prefix Focus in effect (S3DropBucket Config Filter to ignre any other work except that with this prefix)
       //Selective Debug 937:  Log 
       //Selective Debug 937:  Log 
       //Selective Debug 938:  Log 
       //Selective Debug 939:  Log 
       //Selective Debug 940:  Log 
-      //Selective Debug 941:  Log 
-      //Selective Debug 942:  Log result/summary of sending the updates from a file to Firehose Aggregator (see 922 for detailed logging of each update)
+      //Selective Debug 941:  Log each set of updates sent through PackageUpdates-StoreAndQueueWork (caution: can be voluminous data). Useful for Onboarding mapping.
+      //Selective Debug 942:  Log result/summary of sending inbound updates to Firehose Aggregator (see 922 for detailed logging of each update)
       //Selective Debug 943:  Log completion of file processing to FireHose Aggregator
       //Selective Debug 944:  Log 
       //Selective Debug 945:  Log 
@@ -215,8 +216,8 @@
 
 
       // Selective MUST have a preceding underscore and trailing comma, as shown: 
-      "s3dropbucket_selectivelogging": "_503,_504,_509,_511,_826,_908,_918,_924,_925,_927,_928,_929,_930,_931,_932,_933,_934,_942,_943,",
-      "s3dropbucket_loglevel": "NORMAL",
+      "S3DropBucket_selectivelogging": "_503,_504,_509,_511,_826,_908,_918,_924,_925,_927,_928,_929,_930,_931,_932,_933,_934,_942,_943,",
+      "S3DropBucket_loglevel": "NORMAL",
       //"loglevel": "ALL",
       // ALL - Log every message generated regardless of Selective Logging Config
       // NONE - Log Nothing (Exceptions will continue to log)
@@ -228,8 +229,8 @@
       //DropBucketPurge provides the means to name a custom-version of the DropBucket 
       //Provided as an aid only, 
       // Preferred - See documentation for examples using AWS CLI, a preferred method. 
-      "s3dropbucket_purgecount": 0,
-      "s3dropbucket_purge": "s3dropbucket",
+      "S3DropBucket_purgecount": 0,
+      "S3DropBucket_purge": "S3DropBucket",
 
       //TBD: Deprecate in favor of using AWS UI or CLI 
       //Useful for cleaning out the  TricklerCache Work Queue Bucket. 
@@ -237,8 +238,8 @@
       //WorkQueueBucketPurge provides the means to name a custom-version of the DropBucket Work Queue Bucket
       //Provided as an aid only, 
       //Preferred - See documentation for examples using AWS CLI, a preferred method. 
-      "s3dropbucket_workqueuebucketpurgecount": 0,
-      "s3dropbucket_workqueuebucketpurge": "s3dropbucket-process"
+      "S3DropBucket_workqueuebucketpurgecount": 0,
+      "S3DropBucket_workqueuebucketpurge": "S3DropBucket-process"
 
 }
 
