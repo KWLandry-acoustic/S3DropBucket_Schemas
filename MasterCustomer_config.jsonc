@@ -3,7 +3,7 @@
 
       "selectivelogging": "",
 
-      "Customer": "CampEngine_Dataflow2_",          //Dataflow Name 
+      "Customer": "MasterCustomer_",            //Dataflow Name 
 
       "format": "json",
       "separator": "\n",
