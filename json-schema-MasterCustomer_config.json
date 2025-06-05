@@ -392,10 +392,10 @@
             }
           },
           "required": [
-            "daydate"
+            "dateday"
           ],
           "default": {
-            "daydate": "",
+            "dateday": "",
             "date_iso1806_type": {
               "": ""
             },

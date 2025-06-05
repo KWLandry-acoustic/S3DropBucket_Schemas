@@ -119,7 +119,7 @@
                   }
             },
             "methods": {
-                  "daydate": "$.updatedAt",
+                  "dateday": "$.updatedAt",
 
                   "date_iso1806_type": {
                         "DateOfBirth": "DateOfBirth",
