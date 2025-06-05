@@ -216,8 +216,8 @@
 
 
       // Selective MUST have a preceding underscore and trailing comma, as shown: 
-      "S3DropBucket_selectivelogging": "_503,_504,_509,_511,_826,_908,_918,_924,_925,_927,_928,_929,_930,_931,_932,_933,_934,_942,_943,",
-      "S3DropBucket_loglevel": "NORMAL",
+      "s3dropbucket_selectivelogging": "_503,_504,_509,_511,_826,_908,_918,_924,_925,_927,_928,_929,_930,_931,_932,_933,_934,_942,_943,",
+      "s3dropbucket_loglevel": "NORMAL",
       //"loglevel": "ALL",
       // ALL - Log every message generated regardless of Selective Logging Config
       // NONE - Log Nothing (Exceptions will continue to log)
@@ -229,8 +229,8 @@
       //DropBucketPurge provides the means to name a custom-version of the DropBucket 
       //Provided as an aid only, 
       // Preferred - See documentation for examples using AWS CLI, a preferred method. 
-      "S3DropBucket_purgecount": 0,
-      "S3DropBucket_purge": "S3DropBucket",
+      "s3dropbucket_purgecount": 0,
+      "s3dropbucket_purge": "S3DropBucket",
 
       //TBD: Deprecate in favor of using AWS UI or CLI 
       //Useful for cleaning out the  TricklerCache Work Queue Bucket. 
@@ -238,8 +238,8 @@
       //WorkQueueBucketPurge provides the means to name a custom-version of the DropBucket Work Queue Bucket
       //Provided as an aid only, 
       //Preferred - See documentation for examples using AWS CLI, a preferred method. 
-      "S3DropBucket_workqueuebucketpurgecount": 0,
-      "S3DropBucket_workqueuebucketpurge": "S3DropBucket-process"
+      "s3dropbucket_workqueuebucketpurgecount": 0,
+      "s3dropbucket_workqueuebucketpurge": "S3DropBucket-process"
 
 }
 
