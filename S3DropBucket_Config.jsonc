@@ -1,5 +1,5 @@
 {
-      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/s3dropbucket_Schemas/main/json-schema-s3dropbucket_config.json",
+      "$schema": "https://raw.githubusercontent.com/KWLandry-acoustic/s3dropbucket_Schemas/main/json-schema-s3dropbucket_config.json?ref=1",
 
       "aws_region": "us-east-1",
 
@@ -20,7 +20,7 @@
       "s3dropbucket_workbucket": "s3dropbucket-process",
 
       //Bulk Import Bucket for this deployment of the Lambda function
-      "s3dropbucket_bulkimportbucket": "s3dropbucket-process",
+      "s3dropbucket_bulkimport": "ac-sftp-prod-us-east-1-upload",
 
 
       //S3 Work Processor Bucket for this deployment of the Lambda function
