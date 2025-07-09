@@ -19,6 +19,10 @@
       //S3 Work Processor Bucket for this deployment of the Lambda function
       "s3dropbucket_workbucket": "s3dropbucket-process",
 
+      //Bulk Import Bucket for this deployment of the Lambda function
+      "s3dropbucket_bulkimportbucket": "s3dropbucket-process",
+
+
       //S3 Work Processor Bucket for this deployment of the Lambda function
       "s3dropbucket_configs": "s3dropbucket-configs",
 
@@ -137,6 +141,19 @@
       //Message 516:  ProcessWorkQueue - Log when work is set for Retry
       //Message 517:  ProcessWorkQueue - Log the pull of Work files from the Queued Work Bucket (Process bucket) 
       //Message 518:  ProcessWorkQueue - Log  
+      //Message 519:  ProcessWorkQueue - Log  
+      //Message 520:  ProcessWorkQueue - Log  
+      //Message 521:  ProcessWorkQueue - Log  
+      //Message 522:  ProcessWorkQueue - Log  
+      //Message 523:  ProcessWorkQueue - Log  
+      //Message 524:  ProcessWorkQueue - Log  
+      //Message 525:  ProcessWorkQueue - Log BulkImport Write attempt
+      //Message 526:  ProcessWorkQueue - Log when writing to Bulk Import is In-Quiesce
+      //Message 527:  ProcessWorkQueue - Log Result of writing to BulkImport 
+      //Message 528:  ProcessWorkQueue - Log  
+      //Message 529:  ProcessWorkQueue - Log     
+      //Message 530:  ProcessWorkQueue - Log  
+
 
       //...
       //S3DropBucket SFTP (700->799) 

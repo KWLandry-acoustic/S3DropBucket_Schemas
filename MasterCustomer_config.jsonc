@@ -89,6 +89,13 @@
                   "WhatsApp": "$.whatsappconsent", //Dynamic Values: Use when consent data can be mapped from the data (JSONPath in this case) .
                   "Email2": "@.csvfileColumn", //Dynamic Values: Use when consent data can be mapped from the data (CSV Column reference in this case).
                  
+
+                  "Email3": {      //ToDo: Support IF on jsonPath value references
+                        "$.custConsent[?(@ == 'optedIn')]": "OPT_IN",
+                        "$.custConsent[?(@ == 'optedOut')]": "OPT_OUT",
+                        "$.custConsent[?(@ == 'optUnknown')]": "NEVER_SUBSCRIBED",
+                        "$.custConsent[?(@ == 'saidYes')]": "OPT_IN"
+                  },
                   
                   "statement": {    //Mutually Exclusive: Use to define a Consent update to be used with this dataflow, useful to define a compound Group Consent statement as in the example in the description. 
                         "channels": [
@@ -113,7 +120,7 @@
                         //"consentGroups": [
                         //      { "consentGroupId": "3a7134b8-dcb5-509a-b7ff-946b48333cc9", "status": "OPT_IN" },
                         //      { "consentGroupId": "80c6d728-556c-5c21-b931-35332e41b853",
-                        //            "channels": { "channel": "EMAIL", "status": "OPT_IN_UNVERIFIED" }
+                        //        "channels": { "channel": "EMAIL", "status": "OPT_IN_UNVERIFIED" }
                         //      }
                         //]
                   }
@@ -133,7 +140,29 @@
                   },
 
                   "string_to_number_type": {
-                        "Group ID": "Group ID"
+                        "Group ID": "$['Group ID']"
+                  },
+
+                  "string_to_boolean_type": {
+                        "true": {
+                              "SFDC-Contacts_HasOptedOutOfEmail": {"$.HasOptedOutOfEmail": "yes, true, confirmed, ok, positive"},
+                              "SFDC-Contacts_OptedOut": {"$.OptedOut": "yes, true, confirmed, ok, positive"}
+                              },
+                        "false":{
+                              "SFDC-Contacts_HasOptedOutOfEmail": {"$.HasOptedOutOfEmail": "no, false, denied, notok, negative"},
+                              "SFDC-Contacts_OptedOut": {"$.OptedOut": "no, false, unconfirmed, notok, negative"}
+                              }
+                  },
+
+                  "if": {
+                        "SFDC-Contacts_HasOptedOutOfEmail": {
+                              "$.HasOptedOutOfEmail": {"contains":"dontknow, maybe, couldbe"}
+
+                        }
+                  },
+
+                  "set_static_value": {
+                        "SFDC-Contacts_status": "Static Value Test"
                   }
             },
 

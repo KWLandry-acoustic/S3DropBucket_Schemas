@@ -12,6 +12,7 @@
     "s3dropbucket_logbucket",
     "s3dropbucket_log",
     "s3dropbucket_workbucket",
+    "s3dropbucket_bulkimport",
     "s3dropbucket_configs",
     "s3dropbucket_firehosestream",
     "s3dropbucket_workqueue",
@@ -61,15 +62,14 @@
         "cn-northwest-1"
       ]
     },
-    "connectapiurl":{
-        "type": "string",
-        "description": "URL for Connect API calls (Do not edit)",
-        "minLength": 15,
-        "default": [
-          "https://app.goacoustic.com/api/graph"
-        ]
-      },
-      
+    "connectapiurl": {
+      "type": "string",
+      "description": "URL for Connect API calls (Do not edit)",
+      "minLength": 15,
+      "default": [
+        "https://app.goacoustic.com/api/graph"
+      ]
+    },
     "xmlapiurl": {
       "type": "string",
       "description": "Template for the URL of the XML API (Do not edit)",
@@ -121,12 +121,23 @@
       "description": "S3 Work Processor Bucket for this deployment of the Lambda function",
       "minLength": 3
     },
+    "s3dropbucket_bulkimport": {
+      "type": "string",
+      "default": "ac-sftp-prod-us-east-1-upload",
+      "description": "Bulk Import Bucket for this region/deployment of the Lambda function",
+      "minLength": 3,
+      "enum": [
+        "ac-sftp-prod-us-east-1-upload",
+        "ac-sftp-prod-eu-central-1-upload",
+        "ac-sftp-prod-ap-southeast-2-upload"
+      ]
+    },
     "s3dropbucket_configs": {
       "type": "string",
       "default": "s3dropbucket-configs",
       "description": "S3 Bucket for Config Files for this deployment of the Lambda function",
       "minLength": 3
-    },    
+    },
     "s3dropbucket_firehosestream": {
       "type": "string",
       "default": "s3dropbucket_Aggregator",
@@ -253,7 +264,7 @@
     "s3dropbucket_sftp": {
       "type": "boolean",
       "description": "Support SFTP in this Region (true) or not (false)",
-      "default": false 
+      "default": false
     }
   }
 }
