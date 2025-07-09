@@ -24,11 +24,7 @@
     "s3dropbucket_jsonseparator",
     "s3dropbucket_maxbatcheswarning",
     "s3dropbucket_selectivelogging",
-    "s3dropbucket_loglevel",
-    "s3dropbucket_purgecount",
-    "s3dropbucket_purge",
-    "s3dropbucket_workqueuebucketpurgecount",
-    "s3dropbucket_workqueuebucketpurge"
+    "s3dropbucket_loglevel"
   ],
   "properties": {
     "aws_region": {
